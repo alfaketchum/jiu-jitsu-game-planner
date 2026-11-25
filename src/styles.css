@@ -225,3 +225,18 @@ button.danger.armed { background: var(--danger); color: var(--panel); border-col
 .tech-insight-group li { margin: 3px 0; }
 .tech-insight-group .who { font-size: 12px; color: var(--muted); }
 .tech-group .tech-insight-group li { border-top: none; padding: 0; }
+
+/* Techniques tab */
+.tabs { margin-top: 12px; }
+.type-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chip.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.chip.on .muted { color: inherit; opacity: .8; }
+.family-list { list-style: none; margin: 8px 0 0; padding: 0; }
+.has-insights { color: var(--accent); }
+.check.small { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); }
+.variants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 8px; }
+.variant-card { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.variant-card header { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.variant-pos { font-weight: 600; font-size: 15px; }
+.variant-when { font-size: 14px; }
+.sidebar .filter input { width: 100%; }

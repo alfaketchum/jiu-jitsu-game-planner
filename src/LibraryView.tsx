@@ -43,11 +43,21 @@ export function AttireChip({ gi }: { gi?: Attire }) {
   return <span className={`chip-attire attire-${gi}`}>{gi === "gi" ? "gi only" : "no-gi"}</span>;
 }
 
-export function Library({ notebook, setNotebook, mode }: { notebook: Notebook; setNotebook: NotebookUpdater; mode: AttireMode }) {
+export function Library({
+  notebook,
+  setNotebook,
+  mode,
+  initialKey,
+}: {
+  notebook: Notebook;
+  setNotebook: NotebookUpdater;
+  mode: AttireMode;
+  initialKey?: string;
+}) {
   const positions = allPositions(notebook);
   const visible = positions.filter((p) => visibleIn(mode, p.gi));
   const hidden = positions.length - visible.length;
-  const [key, setKey] = useState(LIBRARY[0].key);
+  const [key, setKey] = useState(initialKey ?? LIBRARY[0].key);
   const [source, setSource] = useState("");
   const [adding, setAdding] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
@@ -709,7 +719,7 @@ function History({ positionKey }: { positionKey: string }) {
 }
 
 /** A technique's own sourced insights: how to do it, and how to defend it. */
-function TechniqueInsights({ insights, mode }: { insights: Insight[]; mode: AttireMode }) {
+export function TechniqueInsights({ insights, mode }: { insights: Insight[]; mode: AttireMode }) {
   if (!insights.length) return null;
   const groups: [Role, string][] = [
     ["control", "Doing it"],

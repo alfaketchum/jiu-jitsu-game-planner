@@ -1,4 +1,4 @@
-import type { LibraryPosition, Side } from "./libraryTypes";
+import type { LibraryPosition, LibraryTechnique, Side } from "./libraryTypes";
 import { POSITIONS } from "./positions";
 import { SOURCED } from "./sourced";
 import { withSource, type Insight } from "./libraryTypes";
@@ -50,4 +50,30 @@ export function techniqueFamily(name: string): string {
 export function techniqueVariants(positionKey: string, name: string): LibraryPosition[] {
   const family = techniqueFamily(name);
   return LIBRARY.filter((p) => p.key !== positionKey && p.techniques.some((t) => techniqueFamily(t.name) === family));
+}
+
+export interface TechniqueFamily {
+  /** Lower-case family key, e.g. "kimura". */
+  key: string;
+  /** Display name, e.g. "Kimura". */
+  name: string;
+  type: LibraryTechnique["type"];
+  /** The technique as it appears on each position (its variants). */
+  variants: { position: LibraryPosition; technique: LibraryTechnique }[];
+}
+
+/** Every technique in the library, grouped across the positions it appears on. */
+export function techniqueFamilies(): TechniqueFamily[] {
+  const map = new Map<string, TechniqueFamily>();
+  for (const position of LIBRARY) {
+    for (const technique of position.techniques) {
+      const key = techniqueFamily(technique.name);
+      if (!map.has(key)) {
+        const base = technique.name.replace(/\s+from\s+.*$/i, "").trim();
+        map.set(key, { key, name: base.charAt(0).toUpperCase() + base.slice(1), type: technique.type, variants: [] });
+      }
+      map.get(key)!.variants.push({ position, technique });
+    }
+  }
+  return [...map.values()].sort((a, b) => a.name.localeCompare(b.name));
 }

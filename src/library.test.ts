@@ -69,3 +69,17 @@ describe("techniques", () => {
     expect(techniqueVariants("deep-half", "Waiter sweep")).toEqual([]);
   });
 });
+
+describe("technique families", () => {
+  it("groups the same technique across positions", async () => {
+    const { techniqueFamilies } = await import("./library");
+    const fams = techniqueFamilies();
+    const kimura = fams.find((f) => f.key === "kimura")!;
+    expect(kimura.name).toBe("Kimura");
+    expect(kimura.variants.map((v) => v.position.key)).toEqual(
+      expect.arrayContaining(["closed-guard", "half-guard-bottom", "side-control-top", "north-south"]),
+    );
+    const total = fams.reduce((n, f) => n + f.variants.length, 0);
+    expect(total).toBe(LIBRARY.reduce((n, p) => n + p.techniques.length, 0));
+  });
+});

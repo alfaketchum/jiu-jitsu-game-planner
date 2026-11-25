@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Library } from "./LibraryView";
+import { Techniques } from "./TechniquesView";
 import { loadNotebook, saveNotebook, type Notebook } from "./knowledge";
 import type { AttireMode } from "./library";
 
@@ -18,6 +19,17 @@ function loadMode(): AttireMode {
 export default function App() {
   const [notebook, setNotebook] = useState<Notebook>(loadNotebook);
   const [mode, setMode] = useState<AttireMode>(loadMode);
+  const [tab, setTab] = useState<"positions" | "techniques">(() => (location.hash === "#techniques" ? "techniques" : "positions"));
+  // Position to open when coming from the Techniques tab; also used as a key to reset the Library's selection.
+  const [openKey, setOpenKey] = useState<string | undefined>();
+  const showTab = (t: "positions" | "techniques") => {
+    setTab(t);
+    try {
+      history.replaceState(null, "", t === "techniques" ? "#techniques" : "#positions");
+    } catch {
+      /* ignore */
+    }
+  };
 
   useEffect(() => saveNotebook(notebook), [notebook]);
   useEffect(() => {
@@ -40,7 +52,25 @@ export default function App() {
           ))}
         </div>
       </header>
-      <Library notebook={notebook} setNotebook={setNotebook} mode={mode} />
+      <nav className="tabs" aria-label="Sections">
+        <button className={tab === "positions" ? "active" : ""} onClick={() => showTab("positions")}>
+          Positions
+        </button>
+        <button className={tab === "techniques" ? "active" : ""} onClick={() => showTab("techniques")}>
+          Techniques
+        </button>
+      </nav>
+      {tab === "positions" ? (
+        <Library key={openKey} initialKey={openKey} notebook={notebook} setNotebook={setNotebook} mode={mode} />
+      ) : (
+        <Techniques
+          mode={mode}
+          openPosition={(key) => {
+            setOpenKey(key);
+            showTab("positions");
+          }}
+        />
+      )}
     </div>
   );
 }

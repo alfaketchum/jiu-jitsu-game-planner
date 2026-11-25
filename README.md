@@ -11,6 +11,8 @@ Under each position, **From practitioners** lists named people with their own co
 
 Each position also lists its **techniques**, grouped into sweeps, submissions, transitions and takedowns, with the position each one lands in. A submission that also appears on other positions (kimura from closed guard, half guard, side control, north-south) links to its variants; sweeps stay with the guards they belong to.
 
+The **Techniques** tab lists every technique once, with each position it's done from as a variant: its trigger, where it lands, and its own practitioner insights (doing it and defending it). Filter by type, search, or show only techniques with practitioner insights.
+
 A **Both / Gi / No-gi** switch filters positions, insights and techniques; gi-only positions carry a chip.
 
 ## Positions
