@@ -12,7 +12,7 @@
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #141416;
     --panel: #1d1d21;
     --text: #ececef;
@@ -23,7 +23,21 @@
     --a: #4fc983;
     --b: #e3a94a;
     --learn: #a98cff;
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #141416;
+  --panel: #1d1d21;
+  --text: #ececef;
+  --muted: #9a9aa3;
+  --border: #2f2f36;
+  --accent: #7c9cff;
+  --danger: #ff7a7a;
+  --a: #4fc983;
+  --b: #e3a94a;
+  --learn: #a98cff;
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -41,7 +55,7 @@ input, select, textarea {
 }
 textarea { width: 100%; min-height: 64px; resize: vertical; }
 
-.app { max-width: 1200px; margin: 0 auto; padding: 16px; }
+.app { max-width: 1200px; margin: 0 auto; padding-block: 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .topbar h1 { font-size: 20px; margin: 0 8px 0 0; }
 .actions { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
@@ -176,3 +190,5 @@ textarea { width: 100%; min-height: 64px; resize: vertical; }
 .person-role ul { margin: 0; padding-left: 18px; }
 .source-link { font-size: 12px; }
 .people-empty { margin-top: 14px; }
+button.danger.armed { background: var(--danger); color: var(--panel); border-color: var(--danger); }
+.callout.error { border-left-color: var(--danger); background: color-mix(in srgb, var(--danger) 10%, transparent); }

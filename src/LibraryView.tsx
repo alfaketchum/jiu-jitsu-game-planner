@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { ConfirmButton } from "./ConfirmButton";
 import { PRIORITIES, PRIORITY_LABEL, type GamePlan, type Position, type Priority } from "./model";
 import {
   addFromLibrary,
@@ -68,6 +69,7 @@ export function Library({
   const [source, setSource] = useState("");
   const [adding, setAdding] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
+  const [importError, setImportError] = useState("");
   const entry = positions.find((p) => p.key === key) ?? LIBRARY[0];
   const allSources = sources(notebook);
 
@@ -97,7 +99,7 @@ export function Library({
         positions: [...n.positions, ...incoming.positions.filter((p) => !n.positions.some((x) => x.key === p.key))],
       }));
     } catch (err) {
-      alert(`Couldn't import: ${(err as Error).message}`);
+      setImportError(`Couldn't import that file: ${(err as Error).message}`);
     }
   };
 
@@ -175,6 +177,11 @@ export function Library({
           <button onClick={() => fileInput.current?.click()}>Import notes</button>
           <input ref={fileInput} type="file" accept="application/json" hidden onChange={importNotes} />
         </div>
+        {importError && (
+          <p className="callout error small" role="alert">
+            {importError}
+          </p>
+        )}
         <p className="muted small">
           Control and Escapes hold general coaching. Named practitioners are listed under each position with their own insights. Add an insight with a source and it goes under that person.
         </p>
@@ -248,16 +255,14 @@ function PositionPage({
           </button>
         )}
         {entry.user && (
-          <button
-            className="danger"
-            onClick={() => {
-              if (!confirm(`Delete ${entry.name} and your insights on it?`)) return;
+          <ConfirmButton
+            label="Delete"
+            confirmLabel={`Delete ${entry.name} and your insights?`}
+            onConfirm={() => {
               setNotebook((n) => removePosition(n, entry.key));
               onDeleted();
             }}
-          >
-            Delete
-          </button>
+          />
         )}
       </div>
       {entry.aka && entry.aka.length > 0 && <p className="aka">Also called: {entry.aka.join(" · ")}</p>}

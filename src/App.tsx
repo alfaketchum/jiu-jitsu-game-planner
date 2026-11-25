@@ -16,6 +16,7 @@ import {
   type Technique,
 } from "./model";
 import { samplePlan } from "./sample";
+import { ConfirmButton } from "./ConfirmButton";
 import { Insights, Library } from "./LibraryView";
 import { loadNotebook, saveNotebook, type Notebook } from "./knowledge";
 import type { AttireMode } from "./library";
@@ -62,6 +63,7 @@ export default function App() {
   };
   const [selected, setSelected] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const [importError, setImportError] = useState("");
 
   const plan = plans.find((p) => p.id === activeId) ?? plans[0];
 
@@ -83,7 +85,6 @@ export default function App() {
   };
 
   const deletePlan = () => {
-    if (!confirm(`Delete "${plan.name}"? Export it first if you want a copy.`)) return;
     const rest = plans.filter((p) => p.id !== plan.id);
     const next = rest.length ? rest : [blankPlan()];
     setPlans(next);
@@ -97,8 +98,9 @@ export default function App() {
     try {
       const imported = await readPlanFile(file);
       addPlan({ ...imported, id: uid() });
+      setImportError("");
     } catch (err) {
-      alert(`Couldn't import: ${(err as Error).message}`);
+      setImportError(`Couldn't import that file: ${(err as Error).message}`);
     }
   };
 
@@ -127,13 +129,19 @@ export default function App() {
           <button onClick={() => addPlan(samplePlan())}>Add sample</button>
           <button onClick={() => downloadPlan(plan)}>Export</button>
           <button onClick={() => fileInput.current?.click()}>Import</button>
-          <button className="danger" onClick={deletePlan}>
-            Delete
-          </button>
+          <ConfirmButton label="Delete" confirmLabel={`Delete "${plan.name}"?`} onConfirm={deletePlan} />
           <input ref={fileInput} type="file" accept="application/json" hidden onChange={onImport} />
         </div>
       </header>
 
+      {importError && (
+        <p className="callout error" role="alert">
+          {importError}{" "}
+          <button className="link" onClick={() => setImportError("")}>
+            Dismiss
+          </button>
+        </p>
+      )}
       <section className="plan-meta">
         <label>
           Name
@@ -313,8 +321,6 @@ function PositionDetail({
     update((p) => ({ ...p, positions: p.positions.map((x) => (x.id === positionId ? { ...x, ...patch } : x)) }));
 
   const removePos = () => {
-    const n = plan.techniques.filter((t) => t.from === positionId || t.to === positionId).length;
-    if (!confirm(`Delete ${pos.name}${n ? ` and the ${n} technique(s) linked to it` : ""}?`)) return;
     update((p) => ({
       ...p,
       positions: p.positions.filter((x) => x.id !== positionId),
@@ -355,9 +361,14 @@ function PositionDetail({
             <option key={s}>{s}</option>
           ))}
         </select>
-        <button className="danger" onClick={removePos}>
-          Delete position
-        </button>
+        <ConfirmButton
+          label="Delete position"
+          confirmLabel={(() => {
+            const n = plan.techniques.filter((t) => t.from === positionId || t.to === positionId).length;
+            return n ? `Delete it and ${n} linked technique(s)?` : "Click again to delete";
+          })()}
+          onConfirm={removePos}
+        />
       </div>
       <textarea
         value={pos.notes}
