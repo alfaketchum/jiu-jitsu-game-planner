@@ -93,14 +93,21 @@ export function sources(n: Notebook): { name: string; count: number }[] {
 
 export function addInsight(
   n: Notebook,
-  i: { position: string; role: Role; topic: Topic; text: string; source?: string; gi?: Attire },
+  i: { position: string; role: Role; topic: Topic; text: string; source?: string; url?: string; gi?: Attire },
 ): Notebook {
   const text = i.text.trim();
   if (!text) return n;
   const source = i.source?.trim() || undefined;
   const id = `user:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
-  const { gi, source: _rawSource, ...rest } = i;
-  return { ...n, insights: [...n.insights, { ...rest, text, ...(source ? { source } : {}), ...(gi ? { gi } : {}), id, user: true }] };
+  const { gi, url, source: _rawSource, ...rest } = i;
+  const link = url?.trim();
+  return {
+    ...n,
+    insights: [
+      ...n.insights,
+      { ...rest, text, ...(source ? { source } : {}), ...(link ? { url: link } : {}), ...(gi ? { gi } : {}), id, user: true },
+    ],
+  };
 }
 
 export function removeInsight(n: Notebook, id: string): Notebook {

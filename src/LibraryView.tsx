@@ -351,7 +351,18 @@ function InsightItem({ insight, showAttire, onRemove }: { insight: Insight; show
   return (
     <li className={insight.topic === "mistake" ? "insight mistake" : "insight"}>
       {showAttire && <AttireChip gi={insight.gi} />}
-      {insight.text} {insight.source && <span className="source">— {insight.source}</span>}
+      {insight.text} {insight.source && (
+        <span className="source">
+          —{" "}
+          {insight.url ? (
+            <a href={insight.url} target="_blank" rel="noreferrer noopener">
+              {insight.source}
+            </a>
+          ) : (
+            insight.source
+          )}
+        </span>
+      )}
       {insight.user && <span className="badge mine">yours</span>}
       {onRemove && (
         <button className="x" title="Remove" onClick={onRemove}>
@@ -372,20 +383,21 @@ function InsightForm({
   sources: string[];
   defaultSource?: string;
   defaultAttire?: Attire;
-  onSave: (v: { topic: Topic; text: string; source?: string; gi?: Attire }) => void;
+  onSave: (v: { topic: Topic; text: string; source?: string; url?: string; gi?: Attire }) => void;
   onCancel: () => void;
 }) {
   const [topic, setTopic] = useState<Topic>("key idea");
   const [text, setText] = useState("");
   const [source, setSource] = useState(defaultSource ?? "");
   const [gi, setGi] = useState<"" | Attire>("");
+  const [url, setUrl] = useState("");
   const listId = useRef(`src-${Math.random().toString(36).slice(2)}`).current;
   return (
     <form
       className="tech-form"
       onSubmit={(e) => {
         e.preventDefault();
-        if (text.trim()) onSave({ topic, text, source, gi: gi || undefined });
+        if (text.trim()) onSave({ topic, text, source, url, gi: gi || undefined });
       }}
     >
       <textarea autoFocus value={text} placeholder="The insight, in your words" onChange={(e) => setText(e.target.value)} />
@@ -418,6 +430,7 @@ function InsightForm({
           </datalist>
         </label>
       </div>
+      <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Link to the source (optional): video, instructional, interview" type="url" />
       {defaultAttire && !gi && <p className="muted small">Tip: you're viewing {defaultAttire}. Mark it {defaultAttire} only if it doesn't apply to both.</p>}
       <div className="row">
         <button type="submit" className="primary">

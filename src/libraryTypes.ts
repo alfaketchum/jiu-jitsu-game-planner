@@ -38,6 +38,8 @@ export interface Insight {
   text: string;
   /** Practitioner or instructional it comes from. Empty = common coaching. */
   source?: string;
+  /** Where the source says it (instructional page, interview, video). */
+  url?: string;
   gi?: Attire;
   /** Added by the user rather than built in. */
   user?: boolean;
