@@ -16,9 +16,11 @@ import {
   type Technique,
 } from "./model";
 import { samplePlan } from "./sample";
+import { Insights, Library } from "./LibraryView";
+import { libraryKeyOf } from "./library";
 import { downloadPlan, loadActiveId, loadPlans, readPlanFile, saveActiveId, savePlans } from "./storage";
 
-type View = "plan" | "chains" | "gaps";
+type View = "plan" | "chains" | "gaps" | "library";
 
 function blankPlan(): GamePlan {
   return { id: uid(), name: "New game plan", ruleset: "", startPosition: null, positions: [], techniques: [], updatedAt: Date.now() };
@@ -128,13 +130,23 @@ export default function App() {
       </section>
 
       <nav className="tabs">
-        {(["plan", "chains", "gaps"] as View[]).map((v) => (
+        {(["plan", "chains", "gaps", "library"] as View[]).map((v) => (
           <button key={v} className={view === v ? "active" : ""} onClick={() => setView(v)}>
-            {v === "plan" ? "Positions" : v === "chains" ? "Chains" : `Gaps (${gaps.length})`}
+            {v === "plan" ? "Positions" : v === "chains" ? "Chains" : v === "gaps" ? `Gaps (${gaps.length})` : "Library"}
           </button>
         ))}
       </nav>
 
+      {view === "library" ? (
+        <Library
+          plan={plan}
+          update={update}
+          openInPlan={(id) => {
+            setSelected(id);
+            setView("plan");
+          }}
+        />
+      ) : (
       <main className="layout">
         <PositionList plan={plan} selected={selected} onSelect={setSelected} update={update} />
         <div className="main-pane">
@@ -152,9 +164,12 @@ export default function App() {
               }}
             />
           )}
-          {!selected && view !== "gaps" && <p className="empty">Add a position on the left to start building your game.</p>}
+          {!selected && view !== "gaps" && (
+            <p className="empty">Add a position on the left, or pick one from the Library tab, to start building your game.</p>
+          )}
         </div>
       </main>
+      )}
     </div>
   );
 }
@@ -295,6 +310,7 @@ function PositionDetail({
         placeholder="Key details, grips, priorities in this position…"
         onChange={(e) => setPos({ notes: e.target.value })}
       />
+      {libraryKeyOf(pos) && <Insights plan={plan} libraryKey={libraryKeyOf(pos)!} update={update} />}
 
       <div className="section-head">
         <h2>From here</h2>

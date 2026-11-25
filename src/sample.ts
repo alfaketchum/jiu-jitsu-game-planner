@@ -3,7 +3,7 @@ import { uid } from "./model";
 
 /** A starter closed-guard game so the app isn't empty on first open. */
 export function samplePlan(): GamePlan {
-  const p = (id: string, name: string, side: Position["side"], notes = ""): Position => ({ id, name, side, notes });
+  const p = (id: string, name: string, side: Position["side"], notes = ""): Position => ({ id, name, side, notes, libraryKey: id });
   const positions: Position[] = [
     p("standing", "Standing", "neutral", "Grip fight first. Don't let them get a collar tie and dictate."),
     p("closed-guard", "Closed guard (bottom)", "bottom", "Break posture before anything else. Hips off the mat."),

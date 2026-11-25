@@ -101,3 +101,23 @@ textarea { width: 100%; min-height: 64px; resize: vertical; }
 .gap-no-escape, .gap-dead-end { border-left: 3px solid var(--danger); }
 .gap-no-finish { border-left: 3px solid var(--b); }
 .empty { color: var(--muted); }
+
+/* Library & insights */
+.small { font-size: 12px; }
+.spacer { flex: 1; }
+.small-btn { font-size: 12px; padding: 2px 8px; }
+.lib-title { margin: 0 !important; font-size: 20px !important; }
+.lib-add { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; padding: 10px; border: 1px solid var(--border); border-radius: 8px; margin: 10px 0 4px; }
+.lib-add label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--muted); }
+.insights { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; }
+.insights .wide { grid-column: 1 / -1; }
+@media (max-width: 760px) { .insights { grid-template-columns: 1fr; } }
+.insights h3, .detail h3 { font-size: 14px; margin: 14px 0 4px; }
+.insights ul { margin: 0; padding-left: 18px; }
+.insights li { margin: 3px 0; }
+.threats { width: 100%; border-collapse: collapse; font-size: 14px; }
+.threats td { border-top: 1px solid var(--border); padding: 6px 8px 6px 0; vertical-align: top; width: 50%; }
+.threats td:first-child { color: var(--danger); }
+.insight-panel { border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; margin-top: 10px; }
+.insight-panel summary { cursor: pointer; font-weight: 600; }
+.techs.compact .badge { margin-right: 6px; }

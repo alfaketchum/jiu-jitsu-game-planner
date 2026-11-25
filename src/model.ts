@@ -7,6 +7,8 @@ export interface Position {
   name: string;
   side: Side;
   notes: string;
+  /** Set when the position came from (or matches) the built-in position library. */
+  libraryKey?: string;
 }
 
 export interface Technique {
