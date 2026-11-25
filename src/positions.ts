@@ -204,7 +204,7 @@ export const POSITIONS: LibraryPosition[] = [
     related: ["half-guard-bottom", "low-knee-shield"],
     control: [
       ["key idea", "You're under their center of mass. Their pressure, which beats normal half guard, now works for you."],
-      ["key idea", "Deep half: get underneath their hips hugging the trapped leg; they lose their base without ever being flat on you.", "Bernardo Faria"],
+      ["key idea", "Deep half: get underneath their hips hugging the trapped leg; they lose their base without ever being flat on you.", "bernardo-faria:pending"],
       ["grips", "Arms around their trapped thigh, or one arm on the thigh and one on the far ankle or pants."],
       ["body position", "Head tucked close to their inner thigh, away from crossfaces and guillotines."],
       ["kuzushi", "Tilt them forward or back with your legs; when they resist one way, sweep the other."],
@@ -234,7 +234,7 @@ export const POSITIONS: LibraryPosition[] = [
       "Half guard with a butterfly hook inside their trapped leg. The hook gives you lift, so you can come up or elevate them rather than only holding.",
     related: ["butterfly-guard", "half-guard-bottom"],
     control: [
-      ["key idea", "Coyote / half-butterfly: a butterfly hook inside with the other leg on the half guard, to lift and come up.", "Lucas Leite"],
+      ["key idea", "Coyote / half-butterfly: a butterfly hook inside with the other leg on the half guard, to lift and come up.", "lucas-leite:pending"],
       ["grips", "Underhook on the hooked side; the hook and the underhook work together."],
       ["body position", "On your side, the hook active under their thigh, never flat."],
       ["kuzushi", "Elevate the hooked leg to take away their base, then come up on the underhook or sweep."],
@@ -261,7 +261,7 @@ export const POSITIONS: LibraryPosition[] = [
       "Half guard with your legs triangled around their trapped leg, stretching it out. Popularized by Eddie Bravo in 10th Planet's no-gi system.",
     related: ["half-guard-bottom", "deep-half"],
     control: [
-      ["key idea", "Lockdown: triangle your legs around their trapped leg and stretch them out to kill their base.", "Eddie Bravo"],
+      ["key idea", "Lockdown: triangle your legs around their trapped leg and stretch them out to kill their base.", "eddie-bravo:pending"],
       ["kuzushi", "Extend your legs to straighten their leg; a straight leg can't drive pressure."],
       ["grips", "Win the underhook or a double underhook on the far side, then use the stretch to come up or go deep."],
       ["mistake", "Holding the lockdown with nothing above the waist. They crossface and wait."],
@@ -530,7 +530,7 @@ export const POSITIONS: LibraryPosition[] = [
       "Sitting upright facing a standing or kneeling opponent, feet active, hands hand-fighting. The default engagement guard in modern no-gi and the hub for butterfly, shin-to-shin, single-leg X and wrestling up.",
     related: ["sit-up-guard", "butterfly-guard", "single-leg-x"],
     control: [
-      ["key idea", "Inside position: whoever gets their knees and elbows inside the other person's wins the exchange.", "John Danaher"],
+      ["key idea", "Inside position: whoever gets their knees and elbows inside the other person's wins the exchange.", "john-danaher:pending"],
       ["body position", "Sit up with your weight on your butt and one hand. Chest up, head forward, never leaning back."],
       ["grips", "Hand-fight: two-on-one, collar tie, or wrist control. A grip on their wrist stops them pushing your head down."],
       ["distance", "Feet stay active: on hips, on knees, or between their legs, always ready to re-insert."],
@@ -625,7 +625,7 @@ export const POSITIONS: LibraryPosition[] = [
       ["body position", "Sit up with your head high on their chest. Falling flat on your back kills butterfly guard."],
       ["kuzushi", "Trap the arm on the side you sweep toward so they can't post, then fall to your side, not straight back."],
       ["key idea", "Hooks lift; they don't hold. If you're using them to hang on, the upper body is lost."],
-      ["key idea", "Arm drag is the main attack from here: drag the arm across and take the back.", "Marcelo Garcia"],
+      ["key idea", "Arm drag is the main attack from here: drag the arm across and take the back.", "marcelo-garcia:pending"],
       ["mistake", "Shallow hooks or pointed toes, which give you no lift."],
     ],
     escapes: [
@@ -654,7 +654,7 @@ export const POSITIONS: LibraryPosition[] = [
     related: ["single-leg-x", "butterfly-guard", "de-la-riva"],
     control: [
       ["key idea", "You're under their base: you can put them forward, backward or sideways. Sweep in whichever direction they don't defend."],
-      ["key idea", "X-guard was a core part of Marcelo Garcia's game, entered from butterfly guard when the opponent stands up.", "Marcelo Garcia"],
+      ["key idea", "X-guard was a core part of Marcelo Garcia's game, entered from butterfly guard when the opponent stands up.", "marcelo-garcia:pending"],
       ["grips", "Hug their trapped leg onto your shoulder; the other hand on the far sleeve, belt or ankle."],
       ["body position", "Get your shoulders under their leg, not just your legs. Close the distance before you lock the X."],
       ["kuzushi", "Extend the X to split their legs apart; when they lean to fight it, sweep the other way."],
@@ -718,7 +718,7 @@ export const POSITIONS: LibraryPosition[] = [
       "The base leg entanglement in John Danaher's system: one of their legs trapped between yours, their foot at your armpit, your legs controlling their hip and knee. Home of the straight ankle lock and the hub for the other entanglements.",
     related: ["single-leg-x", "outside-ashi", "inside-sankaku"],
     control: [
-      ["key idea", "Control the knee line: as long as their knee stays trapped inside your hips, they can't escape the entanglement.", "John Danaher"],
+      ["key idea", "Control the knee line: as long as their knee stays trapped inside your hips, they can't escape the entanglement.", "john-danaher:pending"],
       ["body position", "Turn to your side, hips tight to their trapped leg, their ankle locked in your armpit."],
       ["kuzushi", "Keep them off balance with your hip foot. An opponent who can't settle can't defend."],
       ["key idea", "It's a hub: as they defend, move to outside ashi garami or inside sankaku."],
@@ -844,7 +844,7 @@ export const POSITIONS: LibraryPosition[] = [
       ["mistake", "Hips high: they bridge you or shrimp underneath."],
     ],
     escapes: [
-      ["key idea", "Survival before escape: get into a safe defensive posture first, then escape.", "Saulo Ribeiro (Jiu-Jitsu University)"],
+      ["key idea", "Survival before escape: get into a safe defensive posture first, then escape.", "saulo-ribeiro:jiu-jitsu-university"],
       ["body position", "Turn onto your side facing them. Never flat on your back."],
       ["distance", "Frames: forearm on the neck or collarbone, other hand on the hip. Frames hold space; they don't push."],
       ["key idea", "Bridge first to make space, then shrimp into it: the bridge gives the room, the shrimp uses it."],
@@ -876,11 +876,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["pressure", "Weight goes through your hips into theirs, not onto your knees and not forward onto your chest. Leaning forward is what the kip needs."],
       ["kuzushi", "Ride the bridge, don't fight it. Post your hand wide on the side they bridge toward."],
       ["key idea", "Separate an elbow from their body; that arm is your attack. Climb to S-mount to finish it."],
-      ["key idea", "Keep it simple and heavy: Roger Gracie won at the highest level with mount and a cross collar choke, with the armbar ready when they defend the neck.", "Roger Gracie", "gi"],
+      ["key idea", "Keep it simple and heavy: Roger Gracie won at the highest level with mount and a cross collar choke, with the armbar ready when they defend the neck.", "roger-gracie:pending", "gi"],
       ["mistake", "Committing both arms to a choke. You've got no base when they trap and roll."],
     ],
     escapes: [
-      ["key idea", "Survival first: elbows tight to your ribs and hands protecting the neck, so you can't be submitted while you work.", "Saulo Ribeiro (Jiu-Jitsu University)"],
+      ["key idea", "Survival first: elbows tight to your ribs and hands protecting the neck, so you can't be submitted while you work.", "saulo-ribeiro:jiu-jitsu-university"],
       ["key idea", "Read their weight: sitting back on your hips, use the knee-elbow; crowding your head and shoulders, kip; high or posting a hand, trap and roll."],
       ["grips", "Trap and roll: trap an arm AND the foot on the same side, then bridge over that shoulder."],
       ["body position", "Elbow-knee: frame on their hip, turn to your side, and slide your elbow to your knee to recover half guard."],
@@ -910,7 +910,7 @@ export const POSITIONS: LibraryPosition[] = [
       ["key idea", "Treat it as a transition, not a resting place. Walk side to side and make them chase you."],
       ["pressure", "Chest heavy on their chest; hips low, knees wide, up on your toes so you can move."],
       ["grips", "Arms under their armpits to the belt (gi) or around the lats (no-gi); control the elbows so they can't underhook."],
-      ["key idea", "Marcelo Garcia made the north-south choke a signature finish: arm under the neck along the shoulder line, drop your weight.", "Marcelo Garcia"],
+      ["key idea", "Marcelo Garcia made the north-south choke a signature finish: arm under the neck along the shoulder line, drop your weight.", "marcelo-garcia:pending"],
       ["mistake", "Hips high. They push your hips away and shrimp back to guard."],
     ],
     escapes: [

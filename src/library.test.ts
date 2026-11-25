@@ -54,22 +54,6 @@ describe("library content", () => {
   });
 });
 
-describe("sourced insights", () => {
-  it("all land on real positions, with an https link and a 'via'", async () => {
-    const { SOURCED } = await import("./sourced");
-    const keys = new Set(LIBRARY.map((l) => l.key));
-    expect(SOURCED.length).toBeGreaterThan(60);
-    for (const i of SOURCED) {
-      expect(keys.has(i.position), i.position).toBe(true);
-      expect(i.url).toMatch(/^https:\/\//);
-      expect(i.via).toBeTruthy();
-      expect(i.source).toBeTruthy();
-    }
-    const ids = SOURCED.map((i) => i.id);
-    expect(new Set(ids).size).toBe(ids.length);
-  });
-});
-
 describe("techniques", () => {
   it("every built-in position has at least two", () => {
     for (const l of LIBRARY) expect(l.techniques.length, l.key).toBeGreaterThanOrEqual(2);

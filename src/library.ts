@@ -1,13 +1,21 @@
 import type { LibraryPosition, Side } from "./libraryTypes";
 import { POSITIONS } from "./positions";
 import { SOURCED } from "./sourced";
+import { withSource, type Insight } from "./libraryTypes";
 
 export * from "./libraryTypes";
+
+function sourcedFor(key: string): Insight[] {
+  return SOURCED.filter((i) => i.position === key).map((i) => {
+    const { source, ...rest } = i;
+    return withSource({ ...rest, id: `src:${key}:${SOURCED.indexOf(i)}`, sourceId: source });
+  });
+}
 
 /** Built-in positions with the practitioner-sourced insights merged in. */
 export const LIBRARY: LibraryPosition[] = POSITIONS.map((p) => ({
   ...p,
-  insights: [...p.insights, ...SOURCED.filter((i) => i.position === p.key)],
+  insights: [...p.insights, ...sourcedFor(p.key)],
 }));
 
 /** Positions techniques can land in that don't have a full write-up yet. */

@@ -1,3 +1,5 @@
+import { sourceById } from "./sources";
+
 export type Side = "top" | "bottom" | "neutral";
 export type TechType = "takedown" | "pass" | "sweep" | "submission" | "transition" | "escape";
 
@@ -37,8 +39,14 @@ export interface Insight {
   role: Role;
   topic: Topic;
   text: string;
-  /** Practitioner or instructional it comes from. Empty = common coaching. */
+  /** Practitioner it comes from (display name). Empty = common coaching. */
   source?: string;
+  /** Id in src/sources.ts. Built-in named insights always have one. */
+  sourceId?: string;
+  /** Video timestamp in seconds, when the source is a video. */
+  at?: number;
+  /** "pending" when the attribution hasn't been checked against a source yet. */
+  sourceStatus?: "verified" | "pending";
   /** Where the source says it (instructional page, interview, video). */
   url?: string;
   /** How we know: e.g. "BJJMore review" when it's a write-up of their course rather than their own words. */
@@ -46,6 +54,31 @@ export interface Insight {
   gi?: Attire;
   /** Added by the user rather than built in. */
   user?: boolean;
+}
+
+export type SourceKind = "course" | "review" | "article" | "video" | "video write-up" | "book" | "unverified";
+
+export interface Source {
+  id: string;
+  practitioner: string;
+  title: string;
+  publisher: string;
+  url?: string;
+  kind: SourceKind;
+  /** Short label shown next to an insight, e.g. "BJJMore course review". */
+  via: string;
+  /** Date the source was read (YYYY-MM-DD). */
+  accessed: string;
+  status: "verified" | "pending";
+}
+
+/** Fill an insight's display fields (name, link, label) from its source id. */
+export function withSource<T extends { sourceId?: string; at?: number }>(i: T): T & Pick<Insight, "source" | "url" | "via" | "sourceStatus"> {
+  if (!i.sourceId) return i;
+  const s = sourceById(i.sourceId);
+  if (!s) throw new Error(`Unknown source id: ${i.sourceId}`);
+  const url = s.url && i.at != null ? `${s.url}${s.url.includes("?") ? "&" : "?"}t=${i.at}s` : s.url;
+  return { ...i, source: s.practitioner, ...(url ? { url } : {}), via: s.via, sourceStatus: s.status };
 }
 
 export interface LibraryTechnique {
@@ -133,15 +166,17 @@ export type Draft = Omit<LibraryPosition, "insights" | "controller" | "escaper" 
 
 export function build(d: Draft): LibraryPosition {
   const { control, escapes, ...rest } = d;
-  const mk = (role: Role) => ([topic, text, source, gi]: Line, i: number): Insight => ({
-    id: `${d.key}:${role}:${i}`,
-    position: d.key,
-    role,
-    topic,
-    text,
-    ...(source ? { source } : {}),
-    ...(gi ? { gi } : {}),
-  });
+  // The third element of a line is a source id from src/sources.ts.
+  const mk = (role: Role) => ([topic, text, sourceId, gi]: Line, i: number): Insight =>
+    withSource({
+      id: `${d.key}:${role}:${i}`,
+      position: d.key,
+      role,
+      topic,
+      text,
+      ...(sourceId ? { sourceId } : {}),
+      ...(gi ? { gi } : {}),
+    });
   return {
     ...ROLES_BY_FAMILY[d.family],
     related: [],

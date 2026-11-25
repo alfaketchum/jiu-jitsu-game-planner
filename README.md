@@ -43,6 +43,10 @@ npm test
 npm run build    # static site in dist/
 ```
 
+## Updating positions
+
+Add sources first, then update positions, then log the update. Every position is versioned and every named insight cites a source. See **[PROCESS.md](PROCESS.md)**.
+
 ## Data
 
-Position content lives in `src/positions.ts`; practitioner-sourced insights (with links) in `src/sourced.ts`. Your own notes are stored in `localStorage` in the browser you use; clearing site data deletes them, so export what you care about.
+Position content lives in `src/positions.ts`, practitioner insights in `src/sourced.ts`, the source registry in `src/sources.ts`, and each position's version history in `src/data/changelog.json`. Your own notes are stored in `localStorage` in the browser you use; clearing site data deletes them, so export what you care about.

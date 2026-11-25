@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import { ConfirmButton } from "./ConfirmButton";
+import { sourceById } from "./sources";
+import { historyOf } from "./versioning";
 import {
   GROUPS,
   LIBRARY,
@@ -231,6 +233,7 @@ function PositionPage({
         )}
       </div>
       {entry.aka && entry.aka.length > 0 && <p className="aka">Also called: {entry.aka.join(" · ")}</p>}
+      <VersionLine positionKey={entry.key} />
       {offMode && <p className="callout">This is a {entry.gi} position; you're viewing {mode}.</p>}
       {entry.summary && <p>{entry.summary}</p>}
       {entry.rules && <p className="callout">⚖ {entry.rules}</p>}
@@ -247,6 +250,8 @@ function PositionPage({
       <TechniqueSection entry={entry} mode={mode} onSelect={onSelect} />
 
       <PeopleSection entry={entry} notebook={notebook} setNotebook={setNotebook} only={source} mode={mode} />
+
+      <History positionKey={entry.key} />
 
     </div>
   );
@@ -550,7 +555,11 @@ function PeopleSection({
                           source
                         </a>
                       )}
-                      {i.via && <span className="via"> · {i.via}</span>}
+                      {i.sourceStatus === "pending" ? (
+                        <span className="pending" title="Attributed but not yet checked against a source">source pending</span>
+                      ) : (
+                        i.via && <span className="via"> · {i.via}</span>
+                      )}
                       {i.user && <span className="badge mine">yours</span>}
                       {setNotebook && i.user && (
                         <button className="x" title="Remove" onClick={() => setNotebook((n) => removeInsight(n, i.id))}>
@@ -633,5 +642,66 @@ function TechniqueSection({ entry, mode, onSelect }: { entry: LibraryPosition; m
         })}
       </div>
     </section>
+  );
+}
+
+const formatDate = (iso: string) =>
+  new Date(`${iso}T12:00:00`).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+
+function VersionLine({ positionKey }: { positionKey: string }) {
+  const h = historyOf(positionKey);
+  if (!h.length) return null;
+  const last = h[h.length - 1];
+  return (
+    <p className="version-line">
+      v{last.version} · updated {formatDate(last.date)}
+    </p>
+  );
+}
+
+/** Every logged update to this position, newest first, with the sources it used. */
+function History({ positionKey }: { positionKey: string }) {
+  const h = historyOf(positionKey);
+  if (!h.length) return null;
+  return (
+    <details className="history">
+      <summary>
+        History <span className="muted small">· {h.length} version{h.length === 1 ? "" : "s"}</span>
+      </summary>
+      <ol reversed>
+        {[...h].reverse().map((e) => (
+          <li key={e.version}>
+            <div>
+              <strong>v{e.version}</strong> <span className="muted small">· {formatDate(e.date)}</span>
+              {e.backfilled && (
+                <span className="muted small" title="Reconstructed from git history">
+                  {" "}
+                  · backfilled
+                </span>
+              )}
+            </div>
+            <div>{e.summary}</div>
+            {e.sources.length > 0 && (
+              <div className="history-sources small">
+                {e.sources.map((id) => {
+                  const src = sourceById(id);
+                  if (!src) return null;
+                  const label = `${src.practitioner}: ${src.title}`;
+                  return src.url ? (
+                    <a key={id} href={src.url} target="_blank" rel="noreferrer noopener">
+                      {label}
+                    </a>
+                  ) : (
+                    <span key={id} className="pending-source">
+                      {label}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+          </li>
+        ))}
+      </ol>
+    </details>
   );
 }

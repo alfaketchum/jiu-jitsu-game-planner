@@ -1,0 +1,614 @@
+{
+  "open-guard": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Jozef Chen, Gordon Ryan, Mikey Musumeci.",
+      "sources": [
+        "jozef-chen:outside-passing-jpoint-camping",
+        "gordon-ryan:new-innovative-approach-guard-passing",
+        "gordon-ryan:check-out-ryans-amazing-passing-system",
+        "mikey-musumeci:5-killer-moves-2-time-black",
+        "mikey-musumeci:advanced-back-take-tips"
+      ],
+      "backfilled": true,
+      "hash": "96c6989c"
+    }
+  ],
+  "collar-sleeve": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Mikey Musumeci.",
+      "sources": [
+        "mikey-musumeci:bullfight-pass-defense",
+        "mikey-musumeci:5-killer-moves-2-time-black",
+        "mikey-musumeci:importance-guard-how-defend-it"
+      ],
+      "backfilled": true,
+      "hash": "13528998"
+    }
+  ],
+  "closed-guard": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "e6ae24e3"
+    }
+  ],
+  "half-guard-bottom": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Jozef Chen, Craig Jones, Gordon Ryan.",
+      "sources": [
+        "jozef-chen:tripod-passing",
+        "craig-jones:make-z-guard-great-again-review",
+        "craig-jones:power-ride-review",
+        "gordon-ryan:systematically-attacking-guard-half-guard-passing"
+      ],
+      "backfilled": true,
+      "hash": "6fa60b7a"
+    }
+  ],
+  "high-knee-shield": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Gordon Ryan.",
+      "sources": [
+        "gordon-ryan:week-6-ryans-20-passing-system"
+      ],
+      "backfilled": true,
+      "hash": "b36bdc19"
+    }
+  ],
+  "low-knee-shield": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Craig Jones.",
+      "sources": [
+        "craig-jones:make-z-guard-great-again-review",
+        "craig-jones:embrace-smash-z-guard"
+      ],
+      "backfilled": true,
+      "hash": "633b8770"
+    }
+  ],
+  "deep-half": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "bernardo-faria:pending"
+      ],
+      "backfilled": true,
+      "hash": "2f753687"
+    }
+  ],
+  "half-butterfly": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "lucas-leite:pending"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Jozef Chen.",
+      "sources": [
+        "jozef-chen:tripod-passing"
+      ],
+      "backfilled": true,
+      "hash": "62da3203"
+    }
+  ],
+  "lockdown": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "eddie-bravo:pending"
+      ],
+      "backfilled": true,
+      "hash": "59cbfb42"
+    }
+  ],
+  "reverse-half": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "1db63e5f"
+    }
+  ],
+  "inverted-half": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "e0876e7d"
+    }
+  ],
+  "spider-guard": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "3be65faa"
+    }
+  ],
+  "lasso-guard": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Jozef Chen.",
+      "sources": [
+        "jozef-chen:outside-passing-jpoint-camping"
+      ],
+      "backfilled": true,
+      "hash": "ed017f83"
+    }
+  ],
+  "spider-shin-to-shin": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "d9992e91"
+    }
+  ],
+  "de-la-riva": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "444ae03c"
+    }
+  ],
+  "spider-dlr": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "1a0a93bc"
+    }
+  ],
+  "dlr-lasso": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "a857dff6"
+    }
+  ],
+  "seated-guard": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "john-danaher:pending"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Jozef Chen, Marcelo Garcia.",
+      "sources": [
+        "jozef-chen:engaging-without-regrets",
+        "marcelo-garcia:this-guillotine-set-up-is-money"
+      ],
+      "backfilled": true,
+      "hash": "253b2c0e"
+    }
+  ],
+  "shin-to-shin": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Jozef Chen.",
+      "sources": [
+        "jozef-chen:engaging-without-regrets"
+      ],
+      "backfilled": true,
+      "hash": "5a6a2df5"
+    }
+  ],
+  "sit-up-guard": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Rewritten around Lucas Lepri's sit-up guard; added his insights.",
+      "sources": [
+        "lucas-lepri:sit-up-guard",
+        "lucas-lepri:sit-up-guard-2"
+      ],
+      "backfilled": true,
+      "hash": "7056ea4f"
+    }
+  ],
+  "butterfly-guard": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "marcelo-garcia:pending"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Jozef Chen, Craig Jones, Marcelo Garcia.",
+      "sources": [
+        "jozef-chen:tripod-passing",
+        "craig-jones:heel-hook-butterfly-guard-bjj",
+        "marcelo-garcia:be-one-floor-secret-garcias-butterfly",
+        "marcelo-garcia:hidden-secret-garcias",
+        "marcelo-garcia:complete-butterfly-guard",
+        "marcelo-garcia:complete-butterfly-guard-2",
+        "marcelo-garcia:learn-s-famous-butterfly-kick-sweep"
+      ],
+      "backfilled": true,
+      "hash": "cf884b2c"
+    }
+  ],
+  "x-guard": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "marcelo-garcia:pending"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Marcelo Garcia.",
+      "sources": [
+        "marcelo-garcia:x-guard"
+      ],
+      "backfilled": true,
+      "hash": "a5f96996"
+    }
+  ],
+  "single-leg-x": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "c5455bf7"
+    }
+  ],
+  "ashi-garami": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "john-danaher:pending"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Mikey Musumeci.",
+      "sources": [
+        "mikey-musumeci:minutiae-details-jiu-jitsu",
+        "mikey-musumeci:5-killer-moves-2-time-black",
+        "mikey-musumeci:ibjjf-legal-footlocks-copy"
+      ],
+      "backfilled": true,
+      "hash": "3202d736"
+    }
+  ],
+  "outside-ashi": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true,
+      "hash": "da9091ee"
+    }
+  ],
+  "inside-sankaku": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Craig Jones.",
+      "sources": [
+        "craig-jones:defend-against-heel-hook-these-tips",
+        "craig-jones:explains-efficient-heel-hook-defense-concepts"
+      ],
+      "backfilled": true,
+      "hash": "dad5a3db"
+    }
+  ],
+  "fifty-fifty": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Craig Jones.",
+      "sources": [
+        "craig-jones:finishing-tips"
+      ],
+      "backfilled": true,
+      "hash": "3b2e4661"
+    }
+  ],
+  "side-control-top": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "saulo-ribeiro:jiu-jitsu-university"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Craig Jones, Gordon Ryan, Marcelo Garcia.",
+      "sources": [
+        "craig-jones:power-ride-review",
+        "gordon-ryan:video-explains-two-pathways-escape-side",
+        "gordon-ryan:pillars-defense-pin-escapes-defensive-offensive",
+        "marcelo-garcia:learn-s-famous-butterfly-kick-sweep",
+        "marcelo-garcia:understanding-sit-up-escapes-bjj"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Added Gordon Ryan's side control escape details.",
+      "sources": [
+        "gordon-ryan:pin-escapes"
+      ],
+      "backfilled": true,
+      "hash": "3adc1ffb"
+    }
+  ],
+  "mount": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "roger-gracie:pending",
+        "saulo-ribeiro:jiu-jitsu-university"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Gordon Ryan.",
+      "sources": [
+        "gordon-ryan:mount-system-review"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Deeper Gordon Ryan: mount control system and the kip vs knee-elbow rule.",
+      "sources": [
+        "gordon-ryan:mount-system-review",
+        "gordon-ryan:shares-simple-secret-attacking-mount",
+        "gordon-ryan:mount-control-stupid",
+        "gordon-ryan:pin-escapes"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 4,
+      "date": "2026-11-25",
+      "summary": "Added Nicky Ryan's mount insights; mounted triangle and arm triangle techniques.",
+      "sources": [
+        "nicky-ryan:no-gi-mount-masterclass"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 5,
+      "date": "2026-11-25",
+      "summary": "Corrected control to high and heavy; the escape choice follows the weight rule.",
+      "sources": [
+        "gordon-ryan:mount-system-review",
+        "gordon-ryan:shares-simple-secret-attacking-mount",
+        "gordon-ryan:mount-control-stupid",
+        "gordon-ryan:pin-escapes",
+        "nicky-ryan:no-gi-mount-masterclass"
+      ],
+      "backfilled": true,
+      "hash": "f61a3223"
+    }
+  ],
+  "north-south": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [
+        "marcelo-garcia:pending"
+      ],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Marcelo Garcia.",
+      "sources": [
+        "marcelo-garcia:learn-s-famous-north-south-choke"
+      ],
+      "backfilled": true,
+      "hash": "bd83dfc3"
+    }
+  ],
+  "back": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Craig Jones, Gordon Ryan, Marcelo Garcia.",
+      "sources": [
+        "craig-jones:power-ride-review",
+        "gordon-ryan:details-how-escape-body-triangle",
+        "gordon-ryan:shows-simple-bjj-body-triangle-escape",
+        "gordon-ryan:take-control-back-like-king",
+        "marcelo-garcia:phenomenal-back-control"
+      ],
+      "backfilled": true,
+      "hash": "38a0b9bd"
+    }
+  ],
+  "turtle": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Craig Jones.",
+      "sources": [
+        "craig-jones:power-ride-review"
+      ],
+      "backfilled": true,
+      "hash": "3fd2c126"
+    }
+  ],
+  "front-headlock": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "summary": "Initial write-up: control, escapes and techniques.",
+      "sources": [],
+      "backfilled": true
+    },
+    {
+      "version": 2,
+      "date": "2026-11-25",
+      "summary": "Added practitioner insights: Marcelo Garcia.",
+      "sources": [
+        "marcelo-garcia:this-guillotine-set-up-is-money"
+      ],
+      "backfilled": true,
+      "hash": "98e5d373"
+    }
+  ]
+}
