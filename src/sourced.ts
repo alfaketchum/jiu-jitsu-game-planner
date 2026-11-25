@@ -22,6 +22,7 @@ const JONES = "Craig Jones";
 const RYAN = "Gordon Ryan";
 const MIKEY = "Mikey Musumeci";
 const MARCELO = "Marcelo Garcia";
+const LEPRI = "Lucas Lepri";
 
 const BJJMORE = "BJJMore course review";
 const FANATICS_BLOG = "BJJ Fanatics blog breakdown";
@@ -45,6 +46,10 @@ const mikey = {
   bullfight: "https://bjjfanatics.com/blogs/news/bullfight-pass-defense-from-mikey-musumeci",
   killer: "https://bjjfanatics.com/blogs/news/5-killer-moves-from-2-time-black-belt-world-champion-mikey-musumeci",
   minutiae: "https://bjjfanatics.com/blogs/news/minutiae-with-mikey-details-in-jiu-jitsu",
+};
+const lepri = {
+  course: "https://bjjfanatics.com/products/the-sit-up-guard-by-lucas-lepri",
+  review: "https://bjjmore.com/lucas-lepri-sit-up-guard/",
 };
 const marcelo = {
   kick: "https://bjjfanatics.com/blogs/news/learn-marcelo-garcia-s-famous-butterfly-kick-sweep",
@@ -176,6 +181,19 @@ const RAW: Record<string, S[]> = {
       text: "When they attack the foot, pull your knee to your chest and push your heel out of their elbow pocket. No socket, no ankle lock." },
     { position: "ashi-garami", role: "control", topic: "key idea", url: "https://bjjfanatics.com/pages/ibjjf-legal-footlocks-by-mikey-musumeci-copy", via: "BJJ Fanatics course page", gi: "gi",
       text: "In a double guard pull, don't stall or pop up: find a leg, control it, and work IBJJF-legal straight ankle locks." },
+  ],
+
+  [LEPRI]: [
+    { position: "sit-up-guard", role: "control", topic: "key idea", url: lepri.course, via: FANATICS_PRODUCT,
+      text: "Treat the sit-up guard as a hub: De La Riva, reverse De La Riva, lasso, shin-to-shin and X guard all feed it, and you pick the one their stance allows." },
+    { position: "sit-up-guard", role: "control", topic: "key idea", url: lepri.course, via: FANATICS_PRODUCT,
+      text: "Build in a second attack: many of his sequences are a sweep attempt that becomes a single-leg takedown or a back take when they defend the sweep." },
+    { position: "sit-up-guard", role: "control", topic: "grips", url: lepri.course, via: FANATICS_PRODUCT, gi: "gi",
+      text: "Pair the De La Riva hook with sleeve control (one sleeve, both sleeves, or cross collar and sleeve); the grip you have decides between the ankle trip, overhead sweep, single leg or back take." },
+    { position: "sit-up-guard", role: "control", topic: "key idea", url: lepri.review, via: BJJMORE,
+      text: "Use De La Riva to wrestle up cleanly: turn seated exchanges into quick single-leg stand-ups without telegraphing them." },
+    { position: "sit-up-guard", role: "control", topic: "body position", url: lepri.review, via: BJJMORE,
+      text: "His seated game runs on precise grips, angles and timing rather than lapel tricks, the same qualities as his passing." },
   ],
 
   [MARCELO]: [
