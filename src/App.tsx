@@ -18,9 +18,21 @@ import {
 import { samplePlan } from "./sample";
 import { Insights, Library } from "./LibraryView";
 import { loadNotebook, saveNotebook, type Notebook } from "./knowledge";
+import type { AttireMode } from "./library";
 import { downloadPlan, loadActiveId, loadPlans, readPlanFile, saveActiveId, savePlans } from "./storage";
 
 type View = "plan" | "chains" | "gaps" | "library";
+
+const MODE_KEY = "jjgp.attire.v1";
+function loadMode(): AttireMode {
+  try {
+    const m = localStorage.getItem(MODE_KEY);
+    if (m === "gi" || m === "no-gi" || m === "both") return m;
+  } catch {
+    /* ignore */
+  }
+  return "both";
+}
 
 function blankPlan(): GamePlan {
   return { id: uid(), name: "New game plan", ruleset: "", startPosition: null, positions: [], techniques: [], updatedAt: Date.now() };
@@ -35,6 +47,14 @@ export default function App() {
   const [view, setView] = useState<View>("plan");
   const [notebook, setNotebook] = useState<Notebook>(loadNotebook);
   const [libraryKey, setLibraryKey] = useState<string | undefined>();
+  const [mode, setMode] = useState<AttireMode>(loadMode);
+  useEffect(() => {
+    try {
+      localStorage.setItem(MODE_KEY, mode);
+    } catch {
+      /* ignore */
+    }
+  }, [mode]);
   useEffect(() => saveNotebook(notebook), [notebook]);
   const openLibrary = (key: string) => {
     setLibraryKey(key);
@@ -95,6 +115,13 @@ export default function App() {
             </option>
           ))}
         </select>
+        <div className="attire-switch" role="radiogroup" aria-label="Gi or no-gi">
+          {(["both", "gi", "no-gi"] as AttireMode[]).map((m) => (
+            <button key={m} role="radio" aria-checked={mode === m} className={mode === m ? "on" : ""} onClick={() => setMode(m)}>
+              {m === "both" ? "Both" : m === "gi" ? "Gi" : "No-gi"}
+            </button>
+          ))}
+        </div>
         <div className="actions">
           <button onClick={() => addPlan(blankPlan())}>New</button>
           <button onClick={() => addPlan(samplePlan())}>Add sample</button>
@@ -148,6 +175,7 @@ export default function App() {
         <Library
           key={libraryKey}
           initialKey={libraryKey}
+          mode={mode}
           notebook={notebook}
           setNotebook={setNotebook}
           plan={plan}
@@ -170,6 +198,7 @@ export default function App() {
               update={update}
               notebook={notebook}
               openLibrary={openLibrary}
+              mode={mode}
             />
           )}
           {selected && view === "chains" && <Chains plan={plan} positionId={selected} onSelect={setSelected} />}
@@ -264,6 +293,7 @@ function PositionDetail({
   update,
   notebook,
   openLibrary,
+  mode,
 }: {
   plan: GamePlan;
   positionId: string;
@@ -271,6 +301,7 @@ function PositionDetail({
   update: Updater;
   notebook: Notebook;
   openLibrary: (key: string) => void;
+  mode: AttireMode;
 }) {
   const pos = plan.positions.find((p) => p.id === positionId)!;
   const [editing, setEditing] = useState<Technique | null>(null);
@@ -333,7 +364,7 @@ function PositionDetail({
         placeholder="Key details, grips, priorities in this position…"
         onChange={(e) => setPos({ notes: e.target.value })}
       />
-      <Insights pos={pos} notebook={notebook} openLibrary={openLibrary} />
+      <Insights pos={pos} notebook={notebook} openLibrary={openLibrary} mode={mode} />
 
       <div className="section-head">
         <h2>From here</h2>

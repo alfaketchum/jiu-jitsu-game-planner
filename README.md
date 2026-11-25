@@ -12,7 +12,18 @@ Map your jiu jitsu game as a graph of **positions** and the **techniques** that 
 
   Insights are grouped by topic (key idea, grips, body position, pressure, distance, off-balance, mistake) and tagged with the practitioner they come from. Filter by practitioner, add your own insights with a source, add your own positions, and export/import your notes.
 
-  Built in: closed guard, half guard, spider, lasso, spider–De La Riva, De La Riva–lasso, spider + shin-to-shin, seated, sit-up and butterfly guard; side control, mount and north-south. Plan positions that match show the insights inline, with your side first (e.g. "Side control (bottom)" leads with the escapes).
+  Built in (sub-guards nested under their parent):
+  - **Closed guard**
+  - **Half guard**: high knee shield, low knee shield, deep half, half butterfly (coyote), lockdown, reverse half, inverted half
+  - **Spider & lasso** (gi only): spider, lasso, spider + shin-to-shin
+  - **De La Riva**: DLR, spider–DLR, DLR–lasso
+  - **Seated & butterfly**: seated, sit-up, butterfly
+  - **X-guards**: X-guard, single-leg X
+  - **Leg entanglements** (Danaher's names): ashi garami, outside ashi garami, inside sankaku, 50/50, with a rules note on heel hooks and reaping
+  - **Pins**: side control, mount, north-south (with their judo names)
+  - **Back control**
+
+  A **Both / Gi / No-gi** switch in the header filters positions, insights and techniques; gi-only positions carry a chip. Plan positions that match the library show the insights inline, with your side first (e.g. "Side control (bottom)" leads with the escapes).
 - Multiple plans (gi, no-gi, a specific opponent), saved in your browser. Export/import as JSON to back up or share with a coach or teammate.
 
 A sample closed-guard game loads on first open.

@@ -8,7 +8,12 @@ import {
   insightTarget,
   LIBRARY,
   missingTechniques,
+  TOPIC_LABEL,
   TOPICS,
+  visibleIn,
+  type Attire,
+  type AttireMode,
+  type Family,
   type Group,
   type Insight,
   type LibraryPosition,
@@ -32,6 +37,12 @@ type NotebookUpdater = (fn: (n: Notebook) => Notebook) => void;
 
 const ROLE_TITLE: Record<Role, string> = { control: "Control", escape: "Escapes" };
 const ROLE_HINT: Record<Role, string> = { control: "attacking side", escape: "defending side" };
+const FAMILY_LABEL: Record<Family, string> = { guard: "guard", pin: "pin", back: "back", legs: "leg entanglement" };
+
+export function AttireChip({ gi }: { gi?: Attire }) {
+  if (!gi) return null;
+  return <span className={`chip-attire attire-${gi}`}>{gi === "gi" ? "gi only" : "no-gi"}</span>;
+}
 
 export function Library({
   plan,
@@ -40,6 +51,7 @@ export function Library({
   setNotebook,
   openInPlan,
   initialKey,
+  mode,
 }: {
   plan: GamePlan;
   update: Updater;
@@ -47,8 +59,11 @@ export function Library({
   setNotebook: NotebookUpdater;
   openInPlan: (id: string) => void;
   initialKey?: string;
+  mode: AttireMode;
 }) {
   const positions = allPositions(notebook);
+  const visible = positions.filter((p) => visibleIn(mode, p.gi));
+  const hidden = positions.length - visible.length;
   const [key, setKey] = useState(initialKey && positions.some((p) => p.key === initialKey) ? initialKey : LIBRARY[0].key);
   const [source, setSource] = useState("");
   const [adding, setAdding] = useState(false);
@@ -57,7 +72,9 @@ export function Library({
   const allSources = sources(notebook);
 
   const countFor = (k: string) =>
-    source ? [...insightsFor(notebook, k, "control"), ...insightsFor(notebook, k, "escape")].filter((i) => i.source === source).length : 0;
+    source
+      ? [...insightsFor(notebook, k, "control", mode), ...insightsFor(notebook, k, "escape", mode)].filter((i) => i.source === source).length
+      : 0;
 
   const exportNotes = () => {
     const blob = new Blob([JSON.stringify(notebook, null, 2)], { type: "application/json" });
@@ -84,6 +101,27 @@ export function Library({
     }
   };
 
+  const item = (l: LibraryPosition, child: boolean) => {
+    const n = countFor(l.key);
+    return (
+      <li key={l.key}>
+        <button
+          className={`pos${child ? " child" : ""}${l.key === key ? " active" : ""}${source && !n ? " dim" : ""}`}
+          onClick={() => setKey(l.key)}
+        >
+          <span>
+            {child && <span className="branch">└ </span>}
+            {l.name}
+            {mode !== "gi" && <AttireChip gi={l.gi === "gi" ? "gi" : undefined} />}
+          </span>
+          <span className="count">
+            {source ? n || "" : findPlanPosition(plan, l.key) ? <span title="In your plan">✓</span> : ""}
+          </span>
+        </button>
+      </li>
+    );
+  };
+
   return (
     <main className="layout">
       <aside className="sidebar">
@@ -98,35 +136,27 @@ export function Library({
             ))}
           </select>
         </label>
+        {hidden > 0 && (
+          <p className="muted small">
+            {hidden} {mode === "no-gi" ? "gi-only" : "no-gi-only"} position{hidden === 1 ? "" : "s"} hidden.
+          </p>
+        )}
         {GROUPS.map((g) => {
-          const list = positions.filter((p) => p.group === g);
-          if (!list.length) return null;
+          const inGroup = visible.filter((p) => p.group === g);
+          const roots = inGroup.filter((p) => !p.parent || !inGroup.some((x) => x.key === p.parent));
+          if (!roots.length) return null;
           return (
             <div key={g} className="side-group">
               <h3>{g}</h3>
               <ul>
-                {list.map((l) => {
-                  const n = countFor(l.key);
-                  return (
-                    <li key={l.key}>
-                      <button
-                        className={`pos${l.key === key ? " active" : ""}${source && !n ? " dim" : ""}`}
-                        onClick={() => setKey(l.key)}
-                      >
-                        <span>{l.name}</span>
-                        <span className="count">
-                          {source ? (n || "") : findPlanPosition(plan, l.key) ? <span title="In your plan">✓</span> : ""}
-                        </span>
-                      </button>
-                    </li>
-                  );
-                })}
+                {roots.flatMap((r) => [item(r, false), ...inGroup.filter((c) => c.parent === r.key).map((c) => item(c, true))])}
               </ul>
             </div>
           );
         })}
         {adding ? (
           <NewPositionForm
+            parents={positions}
             onCancel={() => setAdding(false)}
             onSave={(p) => {
               const r = addPosition(notebook, p);
@@ -137,7 +167,7 @@ export function Library({
           />
         ) : (
           <button className="wide-btn" onClick={() => setAdding(true)}>
-            + New position
+            + New position or sub-guard
           </button>
         )}
         <div className="row notes-io">
@@ -159,6 +189,7 @@ export function Library({
           openInPlan={openInPlan}
           onSelect={setKey}
           source={source}
+          mode={mode}
           onDeleted={() => setKey(LIBRARY[0].key)}
         />
       </div>
@@ -175,6 +206,7 @@ function PositionPage({
   openInPlan,
   onSelect,
   source,
+  mode,
   onDeleted,
 }: {
   entry: LibraryPosition;
@@ -185,18 +217,29 @@ function PositionPage({
   openInPlan: (id: string) => void;
   onSelect: (key: string) => void;
   source: string;
+  mode: AttireMode;
   onDeleted: () => void;
 }) {
   const inPlan = findPlanPosition(plan, entry.key);
   const all = allPositions(notebook);
   const nameOf = (k: string) => all.find((p) => p.key === k)?.name ?? k;
+  const parent = entry.parent ? all.find((p) => p.key === entry.parent) : undefined;
+  const variations = all.filter((p) => p.parent === entry.key);
+  const offMode = !visibleIn(mode, entry.gi);
+
+  const chips = (keys: string[]) =>
+    keys.map((k) => (
+      <button key={k} className="chip" onClick={() => onSelect(k)}>
+        {nameOf(k)}
+      </button>
+    ));
 
   return (
     <div className="detail library">
       <div className="detail-head">
         <h2 className="lib-title">{entry.name}</h2>
-        <span className="badge">{entry.family === "guard" ? "guard" : "top pin"}</span>
-        {entry.gi && <span className="badge">{entry.gi} only</span>}
+        <span className="badge">{FAMILY_LABEL[entry.family]}</span>
+        <AttireChip gi={entry.gi} />
         {entry.user && <span className="badge">yours</span>}
         <span className="spacer" />
         {inPlan && (
@@ -217,32 +260,21 @@ function PositionPage({
           </button>
         )}
       </div>
+      {entry.aka && entry.aka.length > 0 && <p className="aka">Also called: {entry.aka.join(" · ")}</p>}
+      {offMode && <p className="callout">This is a {entry.gi} position; you're viewing {mode}.</p>}
       {entry.summary && <p>{entry.summary}</p>}
-      {entry.related.length > 0 && (
-        <p className="related">
-          Related:{" "}
-          {entry.related.map((k) => (
-            <button key={k} className="chip" onClick={() => onSelect(k)}>
-              {nameOf(k)}
-            </button>
-          ))}
-        </p>
-      )}
+      {entry.rules && <p className="callout">⚖ {entry.rules}</p>}
+      {parent && <p className="related">Variation of: {chips([parent.key])}</p>}
+      {variations.length > 0 && <p className="related">Variations: {chips(variations.map((v) => v.key))}</p>}
+      {entry.related.length > 0 && <p className="related">Related: {chips(entry.related)}</p>}
 
       <div className="roles">
         {(["control", "escape"] as Role[]).map((role) => (
-          <RoleColumn
-            key={role}
-            entry={entry}
-            role={role}
-            notebook={notebook}
-            setNotebook={setNotebook}
-            source={source}
-          />
+          <RoleColumn key={role} entry={entry} role={role} notebook={notebook} setNotebook={setNotebook} source={source} mode={mode} />
         ))}
       </div>
 
-      {entry.techniques.length > 0 && <Attacks entry={entry} plan={plan} update={update} />}
+      {entry.techniques.length > 0 && <Attacks entry={entry} plan={plan} update={update} mode={mode} />}
     </div>
   );
 }
@@ -253,17 +285,17 @@ function RoleColumn({
   notebook,
   setNotebook,
   source,
-  compact,
+  mode,
 }: {
   entry: LibraryPosition;
   role: Role;
   notebook: Notebook;
   setNotebook?: NotebookUpdater;
   source?: string;
-  compact?: boolean;
+  mode: AttireMode;
 }) {
   const [adding, setAdding] = useState(false);
-  const insights = insightsFor(notebook, entry.key, role);
+  const insights = insightsFor(notebook, entry.key, role, mode);
   const shown = source ? insights.filter((i) => i.source === source) : insights;
   const byTopic = TOPICS.map((t) => [t, shown.filter((i) => i.topic === t)] as const).filter(([, l]) => l.length);
   const who = role === "control" ? entry.controller : entry.escaper;
@@ -281,19 +313,25 @@ function RoleColumn({
       )}
       {byTopic.map(([topic, list]) => (
         <div key={topic} className="topic">
-          <h4>{topic}</h4>
+          <h4>{TOPIC_LABEL[topic]}</h4>
           <ul>
             {list.map((i) => (
-              <InsightItem key={i.id} insight={i} onRemove={setNotebook && i.user ? () => setNotebook((n) => removeInsight(n, i.id)) : undefined} />
+              <InsightItem
+                key={i.id}
+                insight={i}
+                showAttire={mode === "both"}
+                onRemove={setNotebook && i.user ? () => setNotebook((n) => removeInsight(n, i.id)) : undefined}
+              />
             ))}
           </ul>
         </div>
       ))}
-      {setNotebook && !compact &&
+      {setNotebook &&
         (adding ? (
           <InsightForm
             sources={sources(notebook).map((s) => s.name)}
             defaultSource={source}
+            defaultAttire={mode === "both" ? undefined : mode}
             onCancel={() => setAdding(false)}
             onSave={(v) => {
               setNotebook((n) => addInsight(n, { ...v, position: entry.key, role }));
@@ -309,11 +347,11 @@ function RoleColumn({
   );
 }
 
-function InsightItem({ insight, onRemove }: { insight: Insight; onRemove?: () => void }) {
+function InsightItem({ insight, showAttire, onRemove }: { insight: Insight; showAttire: boolean; onRemove?: () => void }) {
   return (
     <li className={insight.topic === "mistake" ? "insight mistake" : "insight"}>
-      {insight.text}{" "}
-      {insight.source && <span className="source">— {insight.source}</span>}
+      {showAttire && <AttireChip gi={insight.gi} />}
+      {insight.text} {insight.source && <span className="source">— {insight.source}</span>}
       {insight.user && <span className="badge mine">yours</span>}
       {onRemove && (
         <button className="x" title="Remove" onClick={onRemove}>
@@ -327,24 +365,27 @@ function InsightItem({ insight, onRemove }: { insight: Insight; onRemove?: () =>
 function InsightForm({
   sources,
   defaultSource,
+  defaultAttire,
   onSave,
   onCancel,
 }: {
   sources: string[];
   defaultSource?: string;
-  onSave: (v: { topic: Topic; text: string; source?: string }) => void;
+  defaultAttire?: Attire;
+  onSave: (v: { topic: Topic; text: string; source?: string; gi?: Attire }) => void;
   onCancel: () => void;
 }) {
   const [topic, setTopic] = useState<Topic>("key idea");
   const [text, setText] = useState("");
   const [source, setSource] = useState(defaultSource ?? "");
+  const [gi, setGi] = useState<"" | Attire>("");
   const listId = useRef(`src-${Math.random().toString(36).slice(2)}`).current;
   return (
     <form
       className="tech-form"
       onSubmit={(e) => {
         e.preventDefault();
-        if (text.trim()) onSave({ topic, text, source });
+        if (text.trim()) onSave({ topic, text, source, gi: gi || undefined });
       }}
     >
       <textarea autoFocus value={text} placeholder="The insight, in your words" onChange={(e) => setText(e.target.value)} />
@@ -353,13 +394,23 @@ function InsightForm({
           Topic
           <select value={topic} onChange={(e) => setTopic(e.target.value as Topic)}>
             {TOPICS.map((t) => (
-              <option key={t}>{t}</option>
+              <option key={t} value={t}>
+                {TOPIC_LABEL[t]}
+              </option>
             ))}
+          </select>
+        </label>
+        <label>
+          Applies to
+          <select value={gi} onChange={(e) => setGi(e.target.value as "" | Attire)}>
+            <option value="">Gi and no-gi</option>
+            <option value="gi">Gi only</option>
+            <option value="no-gi">No-gi only</option>
           </select>
         </label>
         <label className="grow">
           Source (practitioner, instructional, class)
-          <input list={listId} value={source} onChange={(e) => setSource(e.target.value)} placeholder="e.g. coach, seminar, DVD" />
+          <input list={listId} value={source} onChange={(e) => setSource(e.target.value)} placeholder="e.g. coach, seminar, instructional" />
           <datalist id={listId}>
             {sources.map((s) => (
               <option key={s} value={s} />
@@ -367,6 +418,7 @@ function InsightForm({
           </datalist>
         </label>
       </div>
+      {defaultAttire && !gi && <p className="muted small">Tip: you're viewing {defaultAttire}. Mark it {defaultAttire} only if it doesn't apply to both.</p>}
       <div className="row">
         <button type="submit" className="primary">
           Save
@@ -380,37 +432,69 @@ function InsightForm({
 }
 
 function NewPositionForm({
+  parents,
   onSave,
   onCancel,
 }: {
-  onSave: (p: { name: string; group: Group; family: "guard" | "top"; side: "top" | "bottom"; gi?: "gi" | "no-gi"; summary: string }) => void;
+  parents: LibraryPosition[];
+  onSave: (p: { name: string; group: Group; family: Family; side: "top" | "bottom"; gi?: Attire; parent?: string; summary: string }) => void;
   onCancel: () => void;
 }) {
   const [name, setName] = useState("");
-  const [family, setFamily] = useState<"guard" | "top">("guard");
+  const [parent, setParent] = useState("");
+  const [family, setFamily] = useState<Family>("guard");
   const [group, setGroup] = useState<Group>("Other");
-  const [gi, setGi] = useState<"" | "gi" | "no-gi">("");
+  const [gi, setGi] = useState<"" | Attire>("");
   const [summary, setSummary] = useState("");
+
+  const pickParent = (k: string) => {
+    setParent(k);
+    const p = parents.find((x) => x.key === k);
+    if (p) {
+      setFamily(p.family);
+      setGroup(p.group);
+      if (p.gi) setGi(p.gi);
+    }
+  };
+
   return (
     <form
       className="tech-form"
       onSubmit={(e) => {
         e.preventDefault();
         if (name.trim())
-          onSave({ name, group, family, side: family === "guard" ? "bottom" : "top", gi: gi || undefined, summary });
+          onSave({
+            name,
+            group,
+            family,
+            side: family === "pin" || family === "back" ? "top" : "bottom",
+            gi: gi || undefined,
+            parent: parent || undefined,
+            summary,
+          });
       }}
     >
       <input autoFocus value={name} placeholder="Position name" onChange={(e) => setName(e.target.value)} />
-      <select value={family} onChange={(e) => setFamily(e.target.value as "guard" | "top")}>
+      <select value={parent} onChange={(e) => pickParent(e.target.value)} aria-label="Variation of">
+        <option value="">Not a variation</option>
+        {parents.map((p) => (
+          <option key={p.key} value={p.key}>
+            Variation of {p.name}
+          </option>
+        ))}
+      </select>
+      <select value={family} onChange={(e) => setFamily(e.target.value as Family)}>
         <option value="guard">Guard (controlled from bottom)</option>
-        <option value="top">Top pin (controlled from top)</option>
+        <option value="pin">Pin (controlled from top)</option>
+        <option value="back">Back</option>
+        <option value="legs">Leg entanglement</option>
       </select>
       <select value={group} onChange={(e) => setGroup(e.target.value as Group)}>
         {GROUPS.map((g) => (
           <option key={g}>{g}</option>
         ))}
       </select>
-      <select value={gi} onChange={(e) => setGi(e.target.value as "" | "gi" | "no-gi")}>
+      <select value={gi} onChange={(e) => setGi(e.target.value as "" | Attire)}>
         <option value="">Gi and no-gi</option>
         <option value="gi">Gi only</option>
         <option value="no-gi">No-gi only</option>
@@ -430,14 +514,16 @@ function NewPositionForm({
 
 const destName = (key: string | null) => (key ? (LIBRARY.find((l) => l.key === key)?.name ?? DESTINATIONS[key]?.name ?? key) : null);
 
-function Attacks({ entry, plan, update }: { entry: LibraryPosition; plan: GamePlan; update: Updater }) {
+function Attacks({ entry, plan, update, mode }: { entry: LibraryPosition; plan: GamePlan; update: Updater; mode: AttireMode }) {
   const [priority, setPriority] = useState<Priority>("learning");
-  const missing = missingTechniques(plan, entry.key);
-  const add = (only?: string[]) => update((p) => addFromLibrary(p, entry.key, priority, only).plan);
+  const techniques = entry.techniques.filter((t) => visibleIn(mode, t.gi));
+  const missing = missingTechniques(plan, entry.key).filter((t) => techniques.includes(t));
+  const add = (only: string[]) => update((p) => addFromLibrary(p, entry.key, priority, only).plan);
+  if (!techniques.length) return null;
 
   return (
     <details className="attacks">
-      <summary>What this control sets up ({entry.techniques.length})</summary>
+      <summary>What this control sets up ({techniques.length})</summary>
       <div className="lib-add">
         <label>
           Add to plan as
@@ -450,7 +536,7 @@ function Attacks({ entry, plan, update }: { entry: LibraryPosition; plan: GamePl
           </select>
         </label>
         {missing.length > 0 ? (
-          <button onClick={() => add()}>
+          <button onClick={() => add(missing.map((t) => t.name))}>
             {findPlanPosition(plan, entry.key) ? `Add ${missing.length} missing` : "Add position + all"}
           </button>
         ) : (
@@ -458,10 +544,11 @@ function Attacks({ entry, plan, update }: { entry: LibraryPosition; plan: GamePl
         )}
       </div>
       <ul className="techs compact">
-        {entry.techniques.map((t) => (
+        {techniques.map((t) => (
           <li key={t.name}>
             <span className={`badge type-${t.type}`}>{t.type}</span>
-            <strong>{t.name}</strong> {t.to ? <span className="muted">→ {destName(t.to)}</span> : <span className="finish">✓</span>}
+            <strong>{t.name}</strong> {mode === "both" && <AttireChip gi={t.gi} />}
+            {t.to ? <span className="muted">→ {destName(t.to)}</span> : <span className="finish">✓</span>}
             <span className="muted"> — {t.trigger}</span>{" "}
             {missing.includes(t) ? (
               <button className="small-btn" onClick={() => add([t.name])}>
@@ -482,10 +569,12 @@ export function Insights({
   pos,
   notebook,
   openLibrary,
+  mode,
 }: {
   pos: Position;
   notebook: Notebook;
   openLibrary: (key: string) => void;
+  mode: AttireMode;
 }) {
   const target = insightTarget(pos);
   if (!target) return null;
@@ -496,12 +585,12 @@ export function Insights({
   return (
     <details className="insight-panel">
       <summary>
-        {entry.name} insights{" "}
-        <span className="muted">· you're on the {target.role === "control" ? "control" : "escape"} side</span>
+        {entry.name} insights <AttireChip gi={entry.gi} />
+        <span className="muted"> · you're on the {target.role === "control" ? "control" : "escape"} side</span>
       </summary>
       <div className="roles">
         {roles.map((r) => (
-          <RoleColumn key={r} entry={entry} role={r} notebook={notebook} compact />
+          <RoleColumn key={r} entry={entry} role={r} notebook={notebook} mode={mode} />
         ))}
       </div>
       <button className="link" onClick={() => openLibrary(entry.key)}>

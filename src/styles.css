@@ -151,3 +151,15 @@ textarea { width: 100%; min-height: 64px; resize: vertical; }
 .attacks { margin-top: 16px; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; }
 .attacks summary { cursor: pointer; font-weight: 600; }
 .attacks .techs.compact li { padding: 4px 0; }
+
+/* Gi / no-gi */
+.attire-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 99px; overflow: hidden; background: var(--panel); }
+.attire-switch button { border: none; border-radius: 0; padding: 5px 12px; background: none; }
+.attire-switch button.on { background: var(--accent); color: #fff; }
+.chip-attire { display: inline-block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 1px 6px; border-radius: 99px; margin: 0 6px; vertical-align: 1px; white-space: nowrap; }
+.attire-gi { background: color-mix(in srgb, var(--b) 22%, transparent); color: var(--b); }
+.attire-no-gi { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+.pos.child { padding-left: 18px; font-size: 14px; }
+.branch { color: var(--muted); }
+.aka { margin: 0 0 6px; color: var(--muted); font-size: 13px; font-style: italic; }
+.callout { background: color-mix(in srgb, var(--b) 12%, transparent); border-left: 3px solid var(--b); padding: 6px 10px; border-radius: 6px; font-size: 13px; }

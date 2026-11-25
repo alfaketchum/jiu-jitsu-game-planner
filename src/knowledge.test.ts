@@ -1,3 +1,4 @@
+import { visibleIn } from "./library";
 import { addInsight, addPosition, emptyNotebook, insightsFor, removeInsight, removePosition, sources, validateNotebook } from "./knowledge";
 
 describe("notebook", () => {
@@ -40,5 +41,27 @@ describe("notebook", () => {
     const n = validateNotebook({ insights: [{ text: "ok", position: "mount", role: "control", topic: "nonsense" }, { text: 3 }], positions: [] });
     expect(n.insights).toHaveLength(1);
     expect(n.insights[0].topic).toBe("key idea");
+  });
+
+  it("filters insights by gi / no-gi", () => {
+    const both = insightsFor(emptyNotebook(), "closed-guard", "control", "both");
+    const nogi = insightsFor(emptyNotebook(), "closed-guard", "control", "no-gi");
+    const gi = insightsFor(emptyNotebook(), "closed-guard", "control", "gi");
+    expect(nogi.some((i) => i.gi === "gi")).toBe(false);
+    expect(gi.some((i) => i.gi === "no-gi")).toBe(false);
+    expect(both.length).toBeGreaterThan(nogi.length);
+    expect(visibleIn("no-gi", "gi")).toBe(false);
+    expect(visibleIn("no-gi", undefined)).toBe(true);
+  });
+
+  it("migrates notes saved by the earlier version", () => {
+    const n = validateNotebook({
+      insights: [{ id: "a", text: "x", position: "mount", role: "control", topic: "off-balance" }],
+      positions: [{ key: "user-x", name: "X", family: "top", group: "Top pins", side: "top" }],
+    });
+    expect(n.insights[0].topic).toBe("kuzushi");
+    expect(n.positions[0].family).toBe("pin");
+    expect(n.positions[0].group).toBe("Pins");
+    expect(n.positions[0].controller).toBe("Top player");
   });
 });

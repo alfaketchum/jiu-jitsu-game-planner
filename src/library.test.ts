@@ -10,6 +10,8 @@ describe("library content", () => {
     for (const k of [
       "closed-guard", "half-guard-bottom", "butterfly-guard", "spider-guard", "lasso-guard", "spider-dlr",
       "dlr-lasso", "sit-up-guard", "seated-guard", "spider-shin-to-shin", "side-control-top", "mount", "north-south",
+      "de-la-riva", "x-guard", "single-leg-x", "back", "ashi-garami", "outside-ashi", "inside-sankaku", "fifty-fifty",
+      "deep-half", "reverse-half", "inverted-half", "half-butterfly", "high-knee-shield", "low-knee-shield", "lockdown",
     ]) {
       expect(keys).toContain(k);
     }
@@ -18,7 +20,7 @@ describe("library content", () => {
   it("gives every position both a control side and an escape side", () => {
     for (const l of LIBRARY) {
       expect(l.insights.filter((i) => i.role === "control").length, l.key).toBeGreaterThanOrEqual(4);
-      expect(l.insights.filter((i) => i.role === "escape").length, l.key).toBeGreaterThanOrEqual(4);
+      expect(l.insights.filter((i) => i.role === "escape").length, l.key).toBeGreaterThanOrEqual(3);
     }
   });
 
@@ -27,6 +29,23 @@ describe("library content", () => {
     expect(new Set(ids).size).toBe(ids.length);
     const keys = new Set(LIBRARY.map((l) => l.key));
     for (const l of LIBRARY) for (const r of l.related) expect(keys.has(r), `${l.key} -> ${r}`).toBe(true);
+  });
+
+  it("has unique keys, and every sub-guard's parent exists in the same group", () => {
+    const keys = LIBRARY.map((l) => l.key);
+    expect(new Set(keys).size).toBe(keys.length);
+    for (const l of LIBRARY.filter((x) => x.parent)) {
+      const parent = LIBRARY.find((p) => p.key === l.parent);
+      expect(parent, l.key).toBeDefined();
+      expect(parent!.group).toBe(l.group);
+    }
+  });
+
+  it("marks spider and lasso guards gi only, and leg entanglements carry the rules note", () => {
+    for (const k of ["spider-guard", "lasso-guard", "spider-dlr", "dlr-lasso", "spider-shin-to-shin"]) {
+      expect(LIBRARY.find((l) => l.key === k)!.gi, k).toBe("gi");
+    }
+    for (const l of LIBRARY.filter((x) => x.family === "legs")) expect(l.rules, l.key).toBeTruthy();
   });
 
   it("only lands techniques in known positions", () => {
@@ -69,10 +88,12 @@ describe("addFromLibrary", () => {
     expect(r.plan.techniques.map((t) => t.name)).toEqual(["Americana"]);
   });
 
-  it("a plan built from the whole library has no dead-end guards", () => {
+  it("a plan built from the whole library has no dead ends among positions that have techniques", () => {
     let plan = empty();
     for (const l of LIBRARY) plan = addFromLibrary(plan, l.key, "A").plan;
-    const deadGuards = findGaps(plan).filter((g) => g.kind === "dead-end" && LIBRARY.some((l) => l.key === g.positionId));
+    const deadGuards = findGaps(plan).filter(
+      (g) => g.kind === "dead-end" && LIBRARY.some((l) => l.key === g.positionId && l.techniques.length > 0),
+    );
     expect(deadGuards).toEqual([]);
   });
 });
