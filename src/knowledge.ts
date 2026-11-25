@@ -11,9 +11,9 @@ import {
   type Insight,
   type LibraryPosition,
   type Role,
+  type Side,
   type Topic,
 } from "./library";
-import type { Side } from "./model";
 
 /** Everything the user adds to the library: their own insights and positions. */
 export interface Notebook {

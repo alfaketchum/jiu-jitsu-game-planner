@@ -1,4 +1,5 @@
-import type { Side, TechType } from "./model";
+export type Side = "top" | "bottom" | "neutral";
+export type TechType = "takedown" | "pass" | "sweep" | "submission" | "transition" | "escape";
 
 /**
  * Every position has two sides:

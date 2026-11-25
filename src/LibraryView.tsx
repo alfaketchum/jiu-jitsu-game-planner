@@ -1,14 +1,8 @@
 import { useRef, useState } from "react";
 import { ConfirmButton } from "./ConfirmButton";
-import { PRIORITIES, PRIORITY_LABEL, type GamePlan, type Position, type Priority } from "./model";
 import {
-  addFromLibrary,
-  DESTINATIONS,
-  findPlanPosition,
   GROUPS,
-  insightTarget,
   LIBRARY,
-  missingTechniques,
   TOPIC_LABEL,
   TOPICS,
   visibleIn,
@@ -33,7 +27,6 @@ import {
   type Notebook,
 } from "./knowledge";
 
-type Updater = (fn: (p: GamePlan) => GamePlan) => void;
 type NotebookUpdater = (fn: (n: Notebook) => Notebook) => void;
 
 const ROLE_TITLE: Record<Role, string> = { control: "Control", escape: "Escapes" };
@@ -45,27 +38,11 @@ export function AttireChip({ gi }: { gi?: Attire }) {
   return <span className={`chip-attire attire-${gi}`}>{gi === "gi" ? "gi only" : "no-gi"}</span>;
 }
 
-export function Library({
-  plan,
-  update,
-  notebook,
-  setNotebook,
-  openInPlan,
-  initialKey,
-  mode,
-}: {
-  plan: GamePlan;
-  update: Updater;
-  notebook: Notebook;
-  setNotebook: NotebookUpdater;
-  openInPlan: (id: string) => void;
-  initialKey?: string;
-  mode: AttireMode;
-}) {
+export function Library({ notebook, setNotebook, mode }: { notebook: Notebook; setNotebook: NotebookUpdater; mode: AttireMode }) {
   const positions = allPositions(notebook);
   const visible = positions.filter((p) => visibleIn(mode, p.gi));
   const hidden = positions.length - visible.length;
-  const [key, setKey] = useState(initialKey && positions.some((p) => p.key === initialKey) ? initialKey : LIBRARY[0].key);
+  const [key, setKey] = useState(LIBRARY[0].key);
   const [source, setSource] = useState("");
   const [adding, setAdding] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
@@ -117,7 +94,7 @@ export function Library({
             {mode !== "gi" && <AttireChip gi={l.gi === "gi" ? "gi" : undefined} />}
           </span>
           <span className="count">
-            {source ? n || "" : findPlanPosition(plan, l.key) ? <span title="In your plan">✓</span> : ""}
+            {source ? n || "" : ""}
           </span>
         </button>
       </li>
@@ -189,11 +166,8 @@ export function Library({
       <div className="main-pane">
         <PositionPage
           entry={entry}
-          plan={plan}
-          update={update}
           notebook={notebook}
           setNotebook={setNotebook}
-          openInPlan={openInPlan}
           onSelect={setKey}
           source={source}
           mode={mode}
@@ -206,28 +180,21 @@ export function Library({
 
 function PositionPage({
   entry,
-  plan,
-  update,
   notebook,
   setNotebook,
-  openInPlan,
   onSelect,
   source,
   mode,
   onDeleted,
 }: {
   entry: LibraryPosition;
-  plan: GamePlan;
-  update: Updater;
   notebook: Notebook;
   setNotebook: NotebookUpdater;
-  openInPlan: (id: string) => void;
   onSelect: (key: string) => void;
   source: string;
   mode: AttireMode;
   onDeleted: () => void;
 }) {
-  const inPlan = findPlanPosition(plan, entry.key);
   const all = allPositions(notebook);
   const nameOf = (k: string) => all.find((p) => p.key === k)?.name ?? k;
   const parent = entry.parent ? all.find((p) => p.key === entry.parent) : undefined;
@@ -249,11 +216,6 @@ function PositionPage({
         <AttireChip gi={entry.gi} />
         {entry.user && <span className="badge">yours</span>}
         <span className="spacer" />
-        {inPlan && (
-          <button className="link" onClick={() => openInPlan(inPlan.id)}>
-            Open in plan
-          </button>
-        )}
         {entry.user && (
           <ConfirmButton
             label="Delete"
@@ -281,7 +243,6 @@ function PositionPage({
 
       <PeopleSection entry={entry} notebook={notebook} setNotebook={setNotebook} only={source} mode={mode} />
 
-      {entry.techniques.length > 0 && <Attacks entry={entry} plan={plan} update={update} mode={mode} />}
     </div>
   );
 }
@@ -531,95 +492,6 @@ function NewPositionForm({
         </button>
       </div>
     </form>
-  );
-}
-
-const destName = (key: string | null) => (key ? (LIBRARY.find((l) => l.key === key)?.name ?? DESTINATIONS[key]?.name ?? key) : null);
-
-function Attacks({ entry, plan, update, mode }: { entry: LibraryPosition; plan: GamePlan; update: Updater; mode: AttireMode }) {
-  const [priority, setPriority] = useState<Priority>("learning");
-  const techniques = entry.techniques.filter((t) => visibleIn(mode, t.gi));
-  const missing = missingTechniques(plan, entry.key).filter((t) => techniques.includes(t));
-  const add = (only: string[]) => update((p) => addFromLibrary(p, entry.key, priority, only).plan);
-  if (!techniques.length) return null;
-
-  return (
-    <details className="attacks">
-      <summary>What this control sets up ({techniques.length})</summary>
-      <div className="lib-add">
-        <label>
-          Add to plan as
-          <select value={priority} onChange={(e) => setPriority(e.target.value as Priority)}>
-            {PRIORITIES.map((p) => (
-              <option key={p} value={p}>
-                {PRIORITY_LABEL[p]}
-              </option>
-            ))}
-          </select>
-        </label>
-        {missing.length > 0 ? (
-          <button onClick={() => add(missing.map((t) => t.name))}>
-            {findPlanPosition(plan, entry.key) ? `Add ${missing.length} missing` : "Add position + all"}
-          </button>
-        ) : (
-          <span className="finish">All in your plan.</span>
-        )}
-      </div>
-      <ul className="techs compact">
-        {techniques.map((t) => (
-          <li key={t.name}>
-            <span className={`badge type-${t.type}`}>{t.type}</span>
-            <strong>{t.name}</strong> {mode === "both" && <AttireChip gi={t.gi} />}
-            {t.to ? <span className="muted">→ {destName(t.to)}</span> : <span className="finish">✓</span>}
-            <span className="muted"> — {t.trigger}</span>{" "}
-            {missing.includes(t) ? (
-              <button className="small-btn" onClick={() => add([t.name])}>
-                + Add
-              </button>
-            ) : (
-              <span className="muted small">in plan</span>
-            )}
-          </li>
-        ))}
-      </ul>
-    </details>
-  );
-}
-
-/** Insight panel on a plan position that matches a library entry. Shows your side first. */
-export function Insights({
-  pos,
-  notebook,
-  openLibrary,
-  mode,
-}: {
-  pos: Position;
-  notebook: Notebook;
-  openLibrary: (key: string) => void;
-  mode: AttireMode;
-}) {
-  const target = insightTarget(pos);
-  if (!target) return null;
-  const entry = allPositions(notebook).find((p) => p.key === target.key);
-  if (!entry) return null;
-  const roles: Role[] = target.role === "control" ? ["control", "escape"] : ["escape", "control"];
-
-  return (
-    <details className="insight-panel">
-      <summary>
-        {entry.name} insights <AttireChip gi={entry.gi} />
-        <span className="muted"> · you're on the {target.role === "control" ? "control" : "escape"} side</span>
-      </summary>
-      <div className="roles">
-        {roles.map((r) => (
-          <RoleColumn key={r} entry={entry} role={r} notebook={notebook} mode={mode} />
-        ))}
-      </div>
-      <PeopleSection entry={entry} notebook={notebook} mode={mode} />
-      <button className="link" onClick={() => openLibrary(entry.key)}>
-        Open in library to add insights →
-      </button>
-    </details>
   );
 }
 

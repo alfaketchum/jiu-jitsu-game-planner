@@ -1,8 +1,5 @@
-import { addFromLibrary, DESTINATIONS, insightTarget, LIBRARY, missingTechniques } from "./library";
-import { findGaps, type GamePlan } from "./model";
-import { samplePlan } from "./sample";
+import { DESTINATIONS, LIBRARY } from "./library";
 
-const empty = (): GamePlan => ({ id: "p", name: "t", ruleset: "", startPosition: null, positions: [], techniques: [], updatedAt: 0 });
 
 describe("library content", () => {
   it("covers the requested guards and top positions", () => {
@@ -54,55 +51,6 @@ describe("library content", () => {
       if (t.type === "submission") expect(t.to).toBeNull();
       else expect(known.has(t.to!)).toBe(true);
     }
-  });
-});
-
-describe("addFromLibrary", () => {
-  it("creates the position, its destinations and techniques", () => {
-    const r = addFromLibrary(empty(), "side-control-top", "B");
-    const names = r.plan.positions.map((p) => p.name);
-    expect(names).toEqual(expect.arrayContaining(["Side control", "Mount", "North-south", "Knee on belly"]));
-    expect(r.addedTechniques).toBe(LIBRARY.find((l) => l.key === "side-control-top")!.techniques.length);
-    expect(r.plan.techniques.every((t) => t.priority === "B")).toBe(true);
-    expect(r.plan.startPosition).toBe("side-control-top");
-  });
-
-  it("reuses positions already in the plan and skips techniques it already has", () => {
-    const sample = samplePlan();
-    const before = sample.positions.length;
-    const r = addFromLibrary(sample, "closed-guard", "learning");
-    expect(r.plan.positions.length).toBe(before); // mount and back already exist
-    const names = r.plan.techniques.filter((t) => t.from === "closed-guard").map((t) => t.name);
-    expect(names.filter((n) => n === "Hip bump sweep")).toHaveLength(1);
-    expect(missingTechniques(r.plan, "closed-guard")).toHaveLength(0);
-  });
-
-  it("treats a differently named transition to the same place as covered", () => {
-    const names = missingTechniques(samplePlan(), "side-control-top").map((t) => t.name);
-    expect(names).not.toContain("Slide to mount");
-    expect(names).toContain("Walk to north-south");
-  });
-
-  it("can add a single technique", () => {
-    const r = addFromLibrary(empty(), "mount", "A", ["Americana"]);
-    expect(r.plan.techniques.map((t) => t.name)).toEqual(["Americana"]);
-  });
-
-  it("a plan built from the whole library has no dead ends among positions that have techniques", () => {
-    let plan = empty();
-    for (const l of LIBRARY) plan = addFromLibrary(plan, l.key, "A").plan;
-    const deadGuards = findGaps(plan).filter(
-      (g) => g.kind === "dead-end" && LIBRARY.some((l) => l.key === g.positionId && l.techniques.length > 0),
-    );
-    expect(deadGuards).toEqual([]);
-  });
-});
-
-describe("insightTarget", () => {
-  it("maps bottom-of-a-pin positions to that pin's escape side", () => {
-    expect(insightTarget({ id: "side-control-bottom", name: "x", side: "bottom", notes: "" })).toEqual({ key: "side-control-top", role: "escape" });
-    expect(insightTarget({ id: "closed-guard", name: "x", side: "bottom", notes: "" })).toEqual({ key: "closed-guard", role: "control" });
-    expect(insightTarget({ id: "standing", name: "x", side: "neutral", notes: "" })).toBeUndefined();
   });
 });
 
