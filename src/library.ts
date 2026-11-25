@@ -20,3 +20,14 @@ export const DESTINATIONS: Record<string, { name: string; side: Side }> = {
 export function libraryEntry(key: string | undefined): LibraryPosition | undefined {
   return key ? LIBRARY.find((l) => l.key === key) : undefined;
 }
+
+/** "Kimura from half guard" and "Kimura" are the same technique: strip the "from …" part. */
+export function techniqueFamily(name: string): string {
+  return name.replace(/\s+from\s+.*$/i, "").trim().toLowerCase();
+}
+
+/** Other positions that have a variant of the same technique, e.g. kimura from side control and north-south. */
+export function techniqueVariants(positionKey: string, name: string): LibraryPosition[] {
+  const family = techniqueFamily(name);
+  return LIBRARY.filter((p) => p.key !== positionKey && p.techniques.some((t) => techniqueFamily(t.name) === family));
+}

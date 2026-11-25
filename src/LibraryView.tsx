@@ -14,6 +14,9 @@ import {
   type LibraryPosition,
   type Role,
   type Topic,
+  DESTINATIONS,
+  techniqueVariants,
+  type TechType,
 } from "./library";
 import {
   addInsight,
@@ -240,6 +243,8 @@ function PositionPage({
           <RoleColumn key={role} entry={entry} role={role} notebook={notebook} setNotebook={setNotebook} source={source} mode={mode} />
         ))}
       </div>
+
+      <TechniqueSection entry={entry} mode={mode} onSelect={onSelect} />
 
       <PeopleSection entry={entry} notebook={notebook} setNotebook={setNotebook} only={source} mode={mode} />
 
@@ -560,6 +565,73 @@ function PeopleSection({
           })}
         </details>
       ))}
+    </section>
+  );
+}
+
+const TECH_GROUPS: { types: TechType[]; label: string }[] = [
+  { types: ["sweep"], label: "Sweeps" },
+  { types: ["submission"], label: "Submissions" },
+  { types: ["transition"], label: "Transitions & back takes" },
+  { types: ["takedown"], label: "Takedowns & wrestle-ups" },
+  { types: ["pass"], label: "Passes" },
+  { types: ["escape"], label: "Escapes" },
+];
+
+/** The techniques this position sets up, grouped by type, with links to the same technique on other positions. */
+function TechniqueSection({ entry, mode, onSelect }: { entry: LibraryPosition; mode: AttireMode; onSelect: (key: string) => void }) {
+  const techniques = entry.techniques.filter((t) => visibleIn(mode, t.gi));
+  if (!techniques.length) return null;
+  const destination = (key: string) => {
+    const lib = LIBRARY.find((l) => l.key === key);
+    return lib ? (
+      <button className="link" onClick={() => onSelect(lib.key)}>
+        {lib.name}
+      </button>
+    ) : (
+      <span>{DESTINATIONS[key]?.name ?? key}</span>
+    );
+  };
+
+  return (
+    <section className="techniques">
+      <h3>Techniques</h3>
+      <div className="tech-groups">
+        {TECH_GROUPS.map((g) => {
+          const list = techniques.filter((t) => g.types.includes(t.type));
+          if (!list.length) return null;
+          return (
+            <div key={g.label} className="tech-group">
+              <h4>{g.label}</h4>
+              <ul>
+                {list.map((t) => {
+                  const variants = techniqueVariants(entry.key, t.name).filter((v) => visibleIn(mode, v.gi));
+                  return (
+                    <li key={t.name}>
+                      <div className="tech-line">
+                        <strong>{t.name}</strong>
+                        {mode === "both" && <AttireChip gi={t.gi} />}
+                        {t.to && <span className="muted"> → {destination(t.to)}</span>}
+                      </div>
+                      <div className="muted small">When: {t.trigger}</div>
+                      {variants.length > 0 && (
+                        <div className="variants small">
+                          Also from:{" "}
+                          {variants.map((v) => (
+                            <button key={v.key} className="chip" onClick={() => onSelect(v.key)}>
+                              {v.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }

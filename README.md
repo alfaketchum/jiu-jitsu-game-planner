@@ -9,7 +9,9 @@ Insights are grouped by topic: key idea, grips, body position, pressure, distanc
 
 Under each position, **From practitioners** lists named people with their own control and escape insights, each linked to its source (Marcelo Garcia, Craig Jones, Gordon Ryan, Mikey Musumeci, Jozef Chen, Lucas Lepri, and others). Filter by practitioner in the sidebar. Add your own insights, with a source if you have one, and your own positions or sub-guards; export and import your notes as JSON.
 
-A **Both / Gi / No-gi** switch filters positions and insights; gi-only positions carry a chip.
+Each position also lists its **techniques**, grouped into sweeps, submissions, transitions and takedowns, with the position each one lands in. A submission that also appears on other positions (kimura from closed guard, half guard, side control, north-south) links to its variants; sweeps stay with the guards they belong to.
+
+A **Both / Gi / No-gi** switch filters positions, insights and techniques; gi-only positions carry a chip.
 
 ## Positions
 

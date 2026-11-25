@@ -69,3 +69,19 @@ describe("sourced insights", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 });
+
+describe("techniques", () => {
+  it("every built-in position has at least two", () => {
+    for (const l of LIBRARY) expect(l.techniques.length, l.key).toBeGreaterThanOrEqual(2);
+  });
+
+  it("links submission variants across positions", async () => {
+    const { techniqueFamily, techniqueVariants } = await import("./library");
+    expect(techniqueFamily("Kimura from half guard")).toBe("kimura");
+    const kimura = techniqueVariants("closed-guard", "Kimura").map((p) => p.key);
+    expect(kimura).toEqual(expect.arrayContaining(["half-guard-bottom", "side-control-top", "north-south", "high-knee-shield"]));
+    expect(kimura).not.toContain("closed-guard");
+    // A sweep unique to one guard has no variants.
+    expect(techniqueVariants("deep-half", "Waiter sweep")).toEqual([]);
+  });
+});

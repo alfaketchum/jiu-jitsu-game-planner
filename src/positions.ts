@@ -31,6 +31,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["distance", "Either stay out of range of their feet or close in all at once. Standing just in front of their feet is where guards work best."],
       ["mistake", "Passing in a straight line. Change the angle so their legs stop facing you."],
     ],
+    techniques: [
+      { name: "Tripod sweep", type: "sweep", to: "top-guard", trigger: "Foot on their hip, ankle grip, their weight on the far leg" },
+      { name: "Sickle sweep", type: "sweep", to: "top-guard", trigger: "They resist the tripod sweep by leaning forward" },
+      { name: "Collar drag to back", type: "transition", to: "back", trigger: "They lean in or post a hand", gi: "gi" },
+    ],
   }),
   build({
     key: "collar-sleeve",
@@ -50,6 +55,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["grips", "Break the collar grip first; it's what pulls your posture down."],
       ["body position", "Posture up with elbows tight; don't let your arms get extended away from your body."],
       ["mistake", "Stepping into range without dealing with their feet."],
+    ],
+    techniques: [
+      { name: "Triangle from collar-sleeve", type: "submission", to: null, trigger: "They lean in with one arm in, one arm out" },
+      { name: "Omoplata from collar-sleeve", type: "submission", to: null, trigger: "They lean in and the sleeve arm posts" },
+      { name: "Switch to De La Riva", type: "transition", to: "de-la-riva", trigger: "They walk their feet in to keep posture" },
     ],
   }),
 
@@ -148,6 +158,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["body position", "Get your hips low and close so the shin has nothing to frame on."],
       ["mistake", "Driving straight into the shin. You're pushing into their strongest frame."],
     ],
+    techniques: [
+      { name: "Triangle from knee shield", type: "submission", to: null, trigger: "They drive into the shield and an arm slips inside" },
+      { name: "Kimura from knee shield", type: "submission", to: null, trigger: "They post a hand on the mat" },
+      { name: "Switch to underhook half guard", type: "transition", to: "half-guard-bottom", trigger: "They collapse the shield" },
+    ],
   }),
   build({
     key: "low-knee-shield",
@@ -170,6 +185,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["key idea", "Pin the shield to the mat with your knee or hip, then knee cut over it."],
       ["pressure", "Crossface and stay low; a low shield is weak against chest-to-chest pressure."],
       ["mistake", "Standing tall. That's the distance a low shield is built for."],
+    ],
+    techniques: [
+      { name: "Underhook sweep", type: "sweep", to: "top-half", trigger: "Underhook won and they lean into the shield" },
+      { name: "Choi bar", type: "submission", to: null, trigger: "They drive in to smash the shield" },
+      { name: "Enter ashi garami", type: "transition", to: "ashi-garami", trigger: "They back away from the shield" },
     ],
   }),
   build({
@@ -196,6 +216,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["key idea", "Backstep: turn your hips and step back to free the trapped leg as they hold it."],
       ["mistake", "Driving forward over their head. You fall over them."],
     ],
+    techniques: [
+      { name: "Waiter sweep", type: "sweep", to: "top-guard", trigger: "Their weight is over you and they post the free leg" },
+      { name: "Homer Simpson sweep", type: "sweep", to: "top-guard", trigger: "They lean forward over your head" },
+      { name: "Back door to the back", type: "transition", to: "back", trigger: "They sit back on the trapped leg" },
+    ],
   }),
   build({
     key: "half-butterfly",
@@ -220,6 +245,10 @@ export const POSITIONS: LibraryPosition[] = [
       ["pressure", "Crossface and flatten them before they use the hook."],
       ["mistake", "Kneeling tall over the hook, which gives it room to lift you."],
     ],
+    techniques: [
+      { name: "Half butterfly sweep", type: "sweep", to: "top-half", trigger: "Underhook won, you elevate the hooked leg" },
+      { name: "Dogfight to back take", type: "transition", to: "back", trigger: "You come up on the underhook and they whizzer" },
+    ],
   }),
   build({
     key: "lockdown",
@@ -241,6 +270,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["key idea", "Keep the trapped leg bent: drive the knee forward so they can't stretch it."],
       ["pressure", "Flatten them with the crossface; the lockdown is weak when they're flat."],
       ["mistake", "Trying to rip the leg straight out. It feeds the stretch."],
+    ],
+    techniques: [
+      { name: "Electric chair sweep", type: "sweep", to: "top-half", trigger: "Lockdown stretches them and you're under on the far side" },
+      { name: "Electric chair", type: "submission", to: null, trigger: "Their trapped leg stays stretched while you split the other", gi: "no-gi" },
+      { name: "Old school sweep", type: "sweep", to: "top-half", trigger: "You come up on the underhook and grab the ankle" },
     ],
   }),
   build({
@@ -264,6 +298,10 @@ export const POSITIONS: LibraryPosition[] = [
       ["body position", "Keep the trapped knee bent and close to you; watch for knee bars and heel exposure."],
       ["mistake", "Leaning back away from them, which straightens your leg for them."],
     ],
+    techniques: [
+      { name: "Kneebar from reverse half", type: "submission", to: null, trigger: "Their trapped leg straightens as they try to step out" },
+      { name: "Enter ashi garami", type: "transition", to: "ashi-garami", trigger: "You get your hips under the trapped leg" },
+    ],
   }),
   build({
     key: "inverted-half",
@@ -285,6 +323,10 @@ export const POSITIONS: LibraryPosition[] = [
       ["key idea", "Don't follow them into the roll: stay square and let them come back down to you."],
       ["pressure", "Stack them carefully: hips over their shoulders, then step around to pass."],
       ["mistake", "Leaning over them while they invert. That exposes your back."],
+    ],
+    techniques: [
+      { name: "Berimbolo / back take", type: "transition", to: "back", trigger: "They follow you as you invert" },
+      { name: "Recover half guard", type: "transition", to: "half-guard-bottom", trigger: "They stop and stay square" },
     ],
   }),
 
@@ -530,6 +572,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["pressure", "Pin their shin to the mat with your knee."],
       ["mistake", "Standing heavy on the connected leg: it's the one they want to lift."],
     ],
+    techniques: [
+      { name: "Shin-to-shin overhead sweep", type: "sweep", to: "top-guard", trigger: "They lean forward onto the connected leg" },
+      { name: "Come up on the leg", type: "takedown", to: "top-guard", trigger: "They pull the leg back" },
+      { name: "Enter single-leg X", type: "transition", to: "single-leg-x", trigger: "They step the leg forward" },
+    ],
   }),
   build({
     key: "sit-up-guard",
@@ -712,7 +759,10 @@ export const POSITIONS: LibraryPosition[] = [
       ["grips", "Push their crossing leg down and off your hip with your hands to make room for the knee."],
       ["mistake", "Spinning out of a tight heel hook. That's how knees get injured. Tap early."],
     ],
-    techniques: [{ name: "Outside heel hook", type: "submission", to: null, trigger: "Heel exposed, knee line controlled" }],
+    techniques: [
+      { name: "Outside heel hook", type: "submission", to: null, trigger: "Heel exposed, knee line controlled" },
+      { name: "Go to inside sankaku", type: "transition", to: "inside-sankaku", trigger: "They turn their knee in to escape" },
+    ],
   }),
   build({
     key: "inside-sankaku",
@@ -766,7 +816,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["body position", "Standing up out of 50/50 (with your heel hidden) is often safer than rolling."],
       ["mistake", "Panicking and spinning. Turning the wrong way exposes the heel more."],
     ],
-    techniques: [{ name: "Heel hook from 50/50", type: "submission", to: null, trigger: "Their heel is exposed before yours", gi: "no-gi" }],
+    techniques: [
+      { name: "Heel hook from 50/50", type: "submission", to: null, trigger: "Their heel is exposed before yours", gi: "no-gi" },
+      { name: "Toe hold from 50/50", type: "submission", to: null, trigger: "They hide the heel by turning the foot" },
+      { name: "50/50 sweep to top", type: "sweep", to: "top-guard", trigger: "Pants or belt grip and they sit back", gi: "gi" },
+    ],
   }),
 
   // ───────────────────────── PINS ─────────────────────────
@@ -923,6 +977,11 @@ export const POSITIONS: LibraryPosition[] = [
       ["key idea", "Don't stay there: roll back to guard, sit out, or come up to wrestle."],
       ["mistake", "Reaching out with an arm. It gets caught or opens the back."],
     ],
+    techniques: [
+      { name: "Take the back", type: "transition", to: "back", trigger: "Seatbelt in and they lift a knee or arm" },
+      { name: "Clock choke", type: "submission", to: null, trigger: "Deep collar grip and they stay turtled", gi: "gi" },
+      { name: "Go to front headlock", type: "transition", to: "front-headlock", trigger: "They come forward or look up" },
+    ],
   }),
   build({
     key: "front-headlock",
@@ -946,6 +1005,12 @@ export const POSITIONS: LibraryPosition[] = [
       ["key idea", "Posture comes first: get your head up and back."],
       ["grips", "Clear the chin-strap hand from under your chin."],
       ["mistake", "Reaching for their legs with your head trapped."],
+    ],
+    techniques: [
+      { name: "Guillotine", type: "submission", to: null, trigger: "Their head is low and they push into you" },
+      { name: "D'arce", type: "submission", to: null, trigger: "Their near arm is posted forward" },
+      { name: "Anaconda", type: "submission", to: null, trigger: "Arm and head trapped, they're on their knees" },
+      { name: "Snap and spin to the back", type: "transition", to: "back", trigger: "They come up or reach for a leg" },
     ],
   }),
 ];
