@@ -471,6 +471,41 @@
       ],
       "backfilled": true,
       "hash": "3adc1ffb"
+    },
+    {
+      "version": 4,
+      "date": "2026-11-25",
+      "summary": "Added control and escape insights from John Danaher, Lachlan Giles, Gordon Ryan, Craig Jones and Nicky Ryan.",
+      "sources": [
+        "craig-jones:edging-out-of-danger-review",
+        "craig-jones:ibjjf-points-wrong-control",
+        "craig-jones:octopus-guard-2-review",
+        "craig-jones:octopus-guard-comparison",
+        "craig-jones:power-ride-2-review",
+        "craig-jones:power-ride-review",
+        "gordon-ryan:best-side-control-instructionals",
+        "gordon-ryan:instructionals-ranked",
+        "gordon-ryan:octopus-guard-comparison",
+        "gordon-ryan:pin-escapes",
+        "gordon-ryan:top-pins-side-control-north-south",
+        "gordon-ryan:top-pins-side-control-review",
+        "gordon-ryan:vs-danaher-pin-escapes",
+        "john-danaher:best-side-control-instructionals",
+        "john-danaher:escaping-side-control",
+        "john-danaher:framing-options-bottom-side-control",
+        "john-danaher:gordon-ryan-vs-danaher-pin-escapes",
+        "john-danaher:half-guard-passing-dynamic-pins",
+        "john-danaher:new-wave-positional-escapes",
+        "john-danaher:perfectly-escape-side-control",
+        "john-danaher:pin-escapes-go-further-faster",
+        "john-danaher:setting-proper-crossface",
+        "lachlan-giles:best-way-escape-side-control",
+        "lachlan-giles:far-side-armbar",
+        "lachlan-giles:fundamentals-escapes-review",
+        "lachlan-giles:top-side-control",
+        "nicky-ryan:recipe-defeat-gordon"
+      ],
+      "hash": "ac88677b"
     }
   ],
   "mount": [
