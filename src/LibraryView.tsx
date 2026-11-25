@@ -620,9 +620,11 @@ function TechniqueSection({ entry, mode, onSelect }: { entry: LibraryPosition; m
                       <div className="tech-line">
                         <strong>{t.name}</strong>
                         {mode === "both" && <AttireChip gi={t.gi} />}
+                        {t.from === "bottom" && <span className="badge from-bottom">from bottom</span>}
                         {t.to && <span className="muted"> → {destination(t.to)}</span>}
                       </div>
                       <div className="muted small">When: {t.trigger}</div>
+                      {t.insights && t.insights.length > 0 && <TechniqueInsights insights={t.insights.filter((i) => visibleIn(mode, i.gi))} mode={mode} />}
                       {variants.length > 0 && (
                         <div className="variants small">
                           Also from:{" "}
@@ -702,6 +704,50 @@ function History({ positionKey }: { positionKey: string }) {
           </li>
         ))}
       </ol>
+    </details>
+  );
+}
+
+/** A technique's own sourced insights: how to do it, and how to defend it. */
+function TechniqueInsights({ insights, mode }: { insights: Insight[]; mode: AttireMode }) {
+  if (!insights.length) return null;
+  const groups: [Role, string][] = [
+    ["control", "Doing it"],
+    ["escape", "Defending it"],
+  ];
+  return (
+    <details className="tech-insights">
+      <summary>
+        {insights.length} insight{insights.length === 1 ? "" : "s"} ·{" "}
+        {[...new Set(insights.map((i) => i.source).filter(Boolean))].join(", ")}
+      </summary>
+      {groups.map(([role, label]) => {
+        const list = insights.filter((i) => i.role === role);
+        if (!list.length) return null;
+        return (
+          <div key={role} className={`tech-insight-group ${role}`}>
+            <h5>{label}</h5>
+            <ul>
+              {list.map((i) => (
+                <li key={i.id}>
+                  {mode === "both" && <AttireChip gi={i.gi} />}
+                  {i.text}{" "}
+                  <span className="who">
+                    — {i.url ? (
+                      <a href={i.url} target="_blank" rel="noreferrer noopener">
+                        {i.source}
+                      </a>
+                    ) : (
+                      i.source
+                    )}
+                    {i.via && <span className="via"> · {i.via}</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
     </details>
   );
 }

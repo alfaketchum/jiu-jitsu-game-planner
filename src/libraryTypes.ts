@@ -89,6 +89,10 @@ export interface LibraryTechnique {
   trigger: string;
   gi?: Attire;
   notes?: string;
+  /** "bottom" for a technique the escaping player does (e.g. the buggy choke from bottom side control). */
+  from?: "bottom";
+  /** Sourced insights about this technique from this position: control = doing it, escape = defending it. */
+  insights?: Insight[];
 }
 
 export type Group =

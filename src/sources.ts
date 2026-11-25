@@ -812,6 +812,17 @@ export const SOURCES: Source[] = [
     accessed: "2026-11-25",
     status: "verified",
   },
+  {
+    id: "lachlan-giles:little-hands-side-control",
+    practitioner: "Lachlan Giles",
+    title: "“Little Hands” Side Control Attacks with Lachlan Giles!",
+    publisher: "BJJ Fanatics",
+    url: "https://bjjfanatics.com/blogs/news/little-hands-side-control-attacks-with-lachlan-giles",
+    kind: "video write-up",
+    via: "BJJ Fanatics blog breakdown",
+    accessed: "2026-11-25",
+    status: "verified",
+  },
 ];
 
 const BY_ID = new Map(SOURCES.map((s) => [s.id, s]));

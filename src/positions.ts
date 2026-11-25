@@ -858,6 +858,10 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Arm triangle", type: "submission", to: null, trigger: "Their near arm pushes across your face" },
       { name: "Step to knee on belly", type: "transition", to: "knee-on-belly", trigger: "They frame and make space at the hip" },
       { name: "Walk to north-south", type: "transition", to: "north-south", trigger: "They frame your head and hips" },
+      { name: "Far-side armbar", type: "submission", to: null, trigger: "Far arm straightens across their head; they're on their side" },
+      { name: "North-south choke from side control", type: "submission", to: null, trigger: "They keep the near elbow tight to the floor" },
+      { name: "Baseball bat choke", type: "submission", to: null, trigger: "Their arm wrapped in their own lapel", gi: "gi" },
+      { name: "Buggy choke", type: "submission", to: null, trigger: "Bottom player: they leave the head and arm in tight as you turn in", from: "bottom" },
     ],
   }),
   build({

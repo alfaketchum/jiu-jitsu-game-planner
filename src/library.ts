@@ -5,17 +5,29 @@ import { withSource, type Insight } from "./libraryTypes";
 
 export * from "./libraryTypes";
 
+function resolve(i: (typeof SOURCED)[number]): Insight {
+  const { source, technique: _technique, ...rest } = i;
+  return withSource({ ...rest, id: `src:${i.position}:${SOURCED.indexOf(i)}`, sourceId: source });
+}
+
+/** Practitioner insights about the position itself. */
 function sourcedFor(key: string): Insight[] {
-  return SOURCED.filter((i) => i.position === key).map((i) => {
-    const { source, ...rest } = i;
-    return withSource({ ...rest, id: `src:${key}:${SOURCED.indexOf(i)}`, sourceId: source });
-  });
+  return SOURCED.filter((i) => i.position === key && !i.technique).map(resolve);
+}
+
+/** Practitioner insights about one technique on one position (variant-specific). */
+function techniqueInsights(key: string, name: string): Insight[] {
+  return SOURCED.filter((i) => i.position === key && i.technique === name).map(resolve);
 }
 
 /** Built-in positions with the practitioner-sourced insights merged in. */
 export const LIBRARY: LibraryPosition[] = POSITIONS.map((p) => ({
   ...p,
   insights: [...p.insights, ...sourcedFor(p.key)],
+  techniques: p.techniques.map((t) => {
+    const insights = techniqueInsights(p.key, t.name);
+    return insights.length ? { ...t, insights } : t;
+  }),
 }));
 
 /** Positions techniques can land in that don't have a full write-up yet. */

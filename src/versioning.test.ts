@@ -24,6 +24,17 @@ describe("sources", () => {
     }
   });
 
+  it("technique insights point at a real technique on that position", () => {
+    for (const i of SOURCED.filter((x) => x.technique)) {
+      const p = LIBRARY.find((l) => l.key === i.position)!;
+      expect(p.techniques.map((t) => t.name), `${i.position}: "${i.technique}"`).toContain(i.technique);
+    }
+    const attached = LIBRARY.flatMap((p) => p.techniques.flatMap((t) => t.insights ?? []));
+    expect(attached.length).toBe(SOURCED.filter((x) => x.technique).length);
+    const onPositions = LIBRARY.flatMap((p) => p.insights).filter((i) => i.id.startsWith("src:"));
+    expect(onPositions.length + attached.length).toBe(SOURCED.length);
+  });
+
   it("every named built-in insight cites a source id", () => {
     for (const p of POSITIONS) for (const i of p.insights) {
       if (i.source) expect(i.sourceId, `${p.key}: ${i.text.slice(0, 40)}`).toBeTruthy();

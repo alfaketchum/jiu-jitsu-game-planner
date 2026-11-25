@@ -17,7 +17,7 @@ Our process: **add sources from practitioners, then update positions.** Every up
    - `status: "verified"` when the insight was checked against the page or video.
    - `status: "pending"` for an attribution that hasn't been checked yet. The app labels these "source pending".
    - Pick the honest `kind`: `course` (official chapter list), `review` (independent write-up of a course), `article`, `video`, `video write-up`, `book`.
-2. **Add or edit insights.** Practitioner insights go in `src/sourced.ts` with the source id. General coaching goes in `src/positions.ts`. Paraphrase in plain coaching language; only quote what the source says word for word.
+2. **Add or edit insights.** Practitioner insights go in `src/sourced.ts` with the source id. If an insight is about one technique from one position (the arm triangle from side control, not the arm triangle in general), add `technique: "<exact technique name on that position>"`: then `role: "control"` means doing it and `role: "escape"` means defending it. Add the technique to the position first if it isn't there. General coaching goes in `src/positions.ts`. Paraphrase in plain coaching language; only quote what the source says word for word.
 3. **Log the update** for each position you changed:
    ```bash
    npm run log -- mount "Added Nicky Ryan's mount insights" nicky-ryan:no-gi-mount-masterclass

@@ -19,7 +19,7 @@
         "mikey-musumeci:advanced-back-take-tips"
       ],
       "backfilled": true,
-      "hash": "96c6989c"
+      "hash": "462ef534"
     }
   ],
   "collar-sleeve": [
@@ -40,7 +40,7 @@
         "mikey-musumeci:importance-guard-how-defend-it"
       ],
       "backfilled": true,
-      "hash": "13528998"
+      "hash": "29d40ab0"
     }
   ],
   "closed-guard": [
@@ -50,7 +50,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "e6ae24e3"
+      "hash": "6a81622b"
     }
   ],
   "half-guard-bottom": [
@@ -72,7 +72,7 @@
         "gordon-ryan:systematically-attacking-guard-half-guard-passing"
       ],
       "backfilled": true,
-      "hash": "6fa60b7a"
+      "hash": "a45b45e6"
     }
   ],
   "high-knee-shield": [
@@ -91,7 +91,7 @@
         "gordon-ryan:week-6-ryans-20-passing-system"
       ],
       "backfilled": true,
-      "hash": "b36bdc19"
+      "hash": "32c25d7d"
     }
   ],
   "low-knee-shield": [
@@ -112,6 +112,15 @@
       ],
       "backfilled": true,
       "hash": "633b8770"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Moved Craig Jones's choi bar detail onto the Choi bar technique.",
+      "sources": [
+        "craig-jones:embrace-smash-z-guard"
+      ],
+      "hash": "27d90e1e"
     }
   ],
   "deep-half": [
@@ -123,7 +132,7 @@
         "bernardo-faria:pending"
       ],
       "backfilled": true,
-      "hash": "2f753687"
+      "hash": "37bc5f07"
     }
   ],
   "half-butterfly": [
@@ -144,7 +153,7 @@
         "jozef-chen:tripod-passing"
       ],
       "backfilled": true,
-      "hash": "62da3203"
+      "hash": "f1a5621b"
     }
   ],
   "lockdown": [
@@ -156,7 +165,7 @@
         "eddie-bravo:pending"
       ],
       "backfilled": true,
-      "hash": "59cbfb42"
+      "hash": "fceb1902"
     }
   ],
   "reverse-half": [
@@ -166,7 +175,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "1db63e5f"
+      "hash": "ec80188f"
     }
   ],
   "inverted-half": [
@@ -176,7 +185,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "e0876e7d"
+      "hash": "ec062319"
     }
   ],
   "spider-guard": [
@@ -186,7 +195,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "3be65faa"
+      "hash": "e4d4e7e2"
     }
   ],
   "lasso-guard": [
@@ -205,7 +214,7 @@
         "jozef-chen:outside-passing-jpoint-camping"
       ],
       "backfilled": true,
-      "hash": "ed017f83"
+      "hash": "d9d6bb2b"
     }
   ],
   "spider-shin-to-shin": [
@@ -215,7 +224,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "d9992e91"
+      "hash": "73cfab35"
     }
   ],
   "de-la-riva": [
@@ -225,7 +234,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "444ae03c"
+      "hash": "26cc09d4"
     }
   ],
   "spider-dlr": [
@@ -235,7 +244,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "1a0a93bc"
+      "hash": "93b6c890"
     }
   ],
   "dlr-lasso": [
@@ -245,7 +254,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "a857dff6"
+      "hash": "6c56ff76"
     }
   ],
   "seated-guard": [
@@ -267,7 +276,7 @@
         "marcelo-garcia:this-guillotine-set-up-is-money"
       ],
       "backfilled": true,
-      "hash": "253b2c0e"
+      "hash": "fea4d48a"
     }
   ],
   "shin-to-shin": [
@@ -286,7 +295,7 @@
         "jozef-chen:engaging-without-regrets"
       ],
       "backfilled": true,
-      "hash": "5a6a2df5"
+      "hash": "dabc2789"
     }
   ],
   "sit-up-guard": [
@@ -306,7 +315,7 @@
         "lucas-lepri:sit-up-guard-2"
       ],
       "backfilled": true,
-      "hash": "7056ea4f"
+      "hash": "b9b1d8cf"
     }
   ],
   "butterfly-guard": [
@@ -334,6 +343,15 @@
       ],
       "backfilled": true,
       "hash": "cf884b2c"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Moved Marcelo Garcia's kick-sweep timing onto the Butterfly (hook) sweep technique.",
+      "sources": [
+        "marcelo-garcia:learn-s-famous-butterfly-kick-sweep"
+      ],
+      "hash": "fa1dc840"
     }
   ],
   "x-guard": [
@@ -354,7 +372,7 @@
         "marcelo-garcia:x-guard"
       ],
       "backfilled": true,
-      "hash": "a5f96996"
+      "hash": "8aa0982a"
     }
   ],
   "single-leg-x": [
@@ -364,7 +382,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "c5455bf7"
+      "hash": "52a79b9f"
     }
   ],
   "ashi-garami": [
@@ -388,6 +406,15 @@
       ],
       "backfilled": true,
       "hash": "3202d736"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Moved Mikey Musumeci's straight ankle lock attack and defense onto the Straight ankle lock technique.",
+      "sources": [
+        "mikey-musumeci:5-killer-moves-2-time-black"
+      ],
+      "hash": "48f95d54"
     }
   ],
   "outside-ashi": [
@@ -397,7 +424,7 @@
       "summary": "Initial write-up: control, escapes and techniques.",
       "sources": [],
       "backfilled": true,
-      "hash": "da9091ee"
+      "hash": "a785f4a6"
     }
   ],
   "inside-sankaku": [
@@ -418,6 +445,16 @@
       ],
       "backfilled": true,
       "hash": "dad5a3db"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Moved Craig Jones's heel hook defense onto the Inside heel hook technique.",
+      "sources": [
+        "craig-jones:defend-against-heel-hook-these-tips",
+        "craig-jones:explains-efficient-heel-hook-defense-concepts"
+      ],
+      "hash": "ec004613"
     }
   ],
   "fifty-fifty": [
@@ -437,6 +474,15 @@
       ],
       "backfilled": true,
       "hash": "3b2e4661"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Moved Craig Jones's finishing detail onto the Heel hook from 50/50 technique.",
+      "sources": [
+        "craig-jones:finishing-tips"
+      ],
+      "hash": "f971adf7"
     }
   ],
   "side-control-top": [
@@ -506,6 +552,20 @@
         "nicky-ryan:recipe-defeat-gordon"
       ],
       "hash": "ac88677b"
+    },
+    {
+      "version": 5,
+      "date": "2026-11-25",
+      "summary": "Added far-side armbar, north-south choke, baseball bat choke and buggy choke (from bottom); technique insights from Lachlan Giles, Craig Jones and Nicky Ryan, including details moved off the position.",
+      "sources": [
+        "craig-jones:edging-out-of-danger-review",
+        "craig-jones:power-ride-review",
+        "lachlan-giles:far-side-armbar",
+        "lachlan-giles:little-hands-side-control",
+        "lachlan-giles:top-side-control",
+        "nicky-ryan:recipe-defeat-gordon"
+      ],
+      "hash": "348dad79"
     }
   ],
   "mount": [
@@ -562,6 +622,16 @@
       ],
       "backfilled": true,
       "hash": "f61a3223"
+    },
+    {
+      "version": 6,
+      "date": "2026-11-25",
+      "summary": "Technique insights: moved Nicky Ryan's armbar, triangle and arm triangle details onto those techniques; added Gordon Ryan's finishing forks.",
+      "sources": [
+        "gordon-ryan:mount-system-review",
+        "nicky-ryan:no-gi-mount-masterclass"
+      ],
+      "hash": "4a9f6a32"
     }
   ],
   "north-south": [
@@ -583,6 +653,15 @@
       ],
       "backfilled": true,
       "hash": "bd83dfc3"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Moved Marcelo Garcia's choke details onto the North-south choke technique.",
+      "sources": [
+        "marcelo-garcia:learn-s-famous-north-south-choke"
+      ],
+      "hash": "d6dfe86d"
     }
   ],
   "back": [
@@ -605,7 +684,7 @@
         "marcelo-garcia:phenomenal-back-control"
       ],
       "backfilled": true,
-      "hash": "38a0b9bd"
+      "hash": "aba91471"
     }
   ],
   "turtle": [
@@ -624,7 +703,7 @@
         "craig-jones:power-ride-review"
       ],
       "backfilled": true,
-      "hash": "3fd2c126"
+      "hash": "976b07c6"
     }
   ],
   "front-headlock": [
@@ -644,6 +723,15 @@
       ],
       "backfilled": true,
       "hash": "98e5d373"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-25",
+      "summary": "Moved Marcelo Garcia's chin-strap detail onto the Guillotine technique.",
+      "sources": [
+        "marcelo-garcia:this-guillotine-set-up-is-money"
+      ],
+      "hash": "8f873d63"
     }
   ]
 }

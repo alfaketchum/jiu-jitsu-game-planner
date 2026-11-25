@@ -49,7 +49,15 @@ export function positionHash(p: LibraryPosition): string {
     controller: p.controller,
     escaper: p.escaper,
     insights: p.insights.map((i) => [i.role, i.topic, i.text, i.sourceId ?? "", i.at ?? "", i.gi ?? ""]),
-    techniques: p.techniques.map((t) => [t.name, t.type, t.to ?? "", t.trigger, t.gi ?? ""]),
+    techniques: p.techniques.map((t) => [
+      t.name,
+      t.type,
+      t.to ?? "",
+      t.trigger,
+      t.gi ?? "",
+      t.from ?? "",
+      (t.insights ?? []).map((i) => [i.role, i.topic, i.text, i.sourceId ?? "", i.at ?? "", i.gi ?? ""]),
+    ]),
   };
   return fnv1a(JSON.stringify(content));
 }
