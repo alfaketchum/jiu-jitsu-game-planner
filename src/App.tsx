@@ -17,7 +17,7 @@ import {
 } from "./model";
 import { samplePlan } from "./sample";
 import { Insights, Library } from "./LibraryView";
-import { libraryKeyOf } from "./library";
+import { loadNotebook, saveNotebook, type Notebook } from "./knowledge";
 import { downloadPlan, loadActiveId, loadPlans, readPlanFile, saveActiveId, savePlans } from "./storage";
 
 type View = "plan" | "chains" | "gaps" | "library";
@@ -33,6 +33,13 @@ export default function App() {
     return plans.some((p) => p.id === saved) ? saved! : plans[0].id;
   });
   const [view, setView] = useState<View>("plan");
+  const [notebook, setNotebook] = useState<Notebook>(loadNotebook);
+  const [libraryKey, setLibraryKey] = useState<string | undefined>();
+  useEffect(() => saveNotebook(notebook), [notebook]);
+  const openLibrary = (key: string) => {
+    setLibraryKey(key);
+    setView("library");
+  };
   const [selected, setSelected] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -139,6 +146,10 @@ export default function App() {
 
       {view === "library" ? (
         <Library
+          key={libraryKey}
+          initialKey={libraryKey}
+          notebook={notebook}
+          setNotebook={setNotebook}
           plan={plan}
           update={update}
           openInPlan={(id) => {
@@ -151,7 +162,15 @@ export default function App() {
         <PositionList plan={plan} selected={selected} onSelect={setSelected} update={update} />
         <div className="main-pane">
           {selected && view === "plan" && (
-            <PositionDetail key={selected} plan={plan} positionId={selected} onSelect={setSelected} update={update} />
+            <PositionDetail
+              key={selected}
+              plan={plan}
+              positionId={selected}
+              onSelect={setSelected}
+              update={update}
+              notebook={notebook}
+              openLibrary={openLibrary}
+            />
           )}
           {selected && view === "chains" && <Chains plan={plan} positionId={selected} onSelect={setSelected} />}
           {view === "gaps" && (
@@ -243,11 +262,15 @@ function PositionDetail({
   positionId,
   onSelect,
   update,
+  notebook,
+  openLibrary,
 }: {
   plan: GamePlan;
   positionId: string;
   onSelect: (id: string) => void;
   update: Updater;
+  notebook: Notebook;
+  openLibrary: (key: string) => void;
 }) {
   const pos = plan.positions.find((p) => p.id === positionId)!;
   const [editing, setEditing] = useState<Technique | null>(null);
@@ -310,7 +333,7 @@ function PositionDetail({
         placeholder="Key details, grips, priorities in this position…"
         onChange={(e) => setPos({ notes: e.target.value })}
       />
-      {libraryKeyOf(pos) && <Insights plan={plan} libraryKey={libraryKeyOf(pos)!} update={update} />}
+      <Insights pos={pos} notebook={notebook} openLibrary={openLibrary} />
 
       <div className="section-head">
         <h2>From here</h2>

@@ -6,7 +6,13 @@ Map your jiu jitsu game as a graph of **positions** and the **techniques** that 
 - **Techniques** — takedowns, passes, sweeps, submissions, transitions and escapes. Each one has a *trigger* (the reaction that tells you to use it), the position it lands you in, and a priority: **A-game**, **B-game** or **Learning**.
 - **Chains** — from any position, the tree of what you do next, filtered by priority and depth, stopping at finishes and loops.
 - **Gaps** — what your plan is missing: dead-end positions, bottom positions with no sweep or escape, positions with no path to a submission, single-option positions, and positions you can't reach from your starting point.
-- **Library** — positional insights for closed guard, spider guard, half guard and butterfly guard (bottom), and side control, mount and north-south (top): goals, grips, principles, common mistakes, how the opponent will try to pass or escape with your answer, and suggested techniques with triggers. Add a whole position or single techniques to your plan in one click; positions in your plan that match the library show the insights inline.
+- **Library**: a position-by-position notebook. Every position has two sides:
+  - **Control** (attacking side): what the person holding it does. For a guard that's the guard player; for a pin it's the top player.
+  - **Escapes** (defending side): what the person stuck in it does. For a guard that's the passer; for a pin it's the bottom player.
+
+  Insights are grouped by topic (key idea, grips, body position, pressure, distance, off-balance, mistake) and tagged with the practitioner they come from. Filter by practitioner, add your own insights with a source, add your own positions, and export/import your notes.
+
+  Built in: closed guard, half guard, spider, lasso, spider–De La Riva, De La Riva–lasso, spider + shin-to-shin, seated, sit-up and butterfly guard; side control, mount and north-south. Plan positions that match show the insights inline, with your side first (e.g. "Side control (bottom)" leads with the escapes).
 - Multiple plans (gi, no-gi, a specific opponent), saved in your browser. Export/import as JSON to back up or share with a coach or teammate.
 
 A sample closed-guard game loads on first open.

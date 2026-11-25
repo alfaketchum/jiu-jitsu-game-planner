@@ -1,4 +1,4 @@
-import { addFromLibrary, DESTINATIONS, LIBRARY, missingTechniques } from "./library";
+import { addFromLibrary, DESTINATIONS, insightTarget, LIBRARY, missingTechniques } from "./library";
 import { findGaps, type GamePlan } from "./model";
 import { samplePlan } from "./sample";
 
@@ -7,9 +7,26 @@ const empty = (): GamePlan => ({ id: "p", name: "t", ruleset: "", startPosition:
 describe("library content", () => {
   it("covers the requested guards and top positions", () => {
     const keys = LIBRARY.map((l) => l.key);
-    for (const k of ["closed-guard", "spider-guard", "half-guard-bottom", "butterfly-guard", "side-control-top", "mount", "north-south"]) {
+    for (const k of [
+      "closed-guard", "half-guard-bottom", "butterfly-guard", "spider-guard", "lasso-guard", "spider-dlr",
+      "dlr-lasso", "sit-up-guard", "seated-guard", "spider-shin-to-shin", "side-control-top", "mount", "north-south",
+    ]) {
       expect(keys).toContain(k);
     }
+  });
+
+  it("gives every position both a control side and an escape side", () => {
+    for (const l of LIBRARY) {
+      expect(l.insights.filter((i) => i.role === "control").length, l.key).toBeGreaterThanOrEqual(4);
+      expect(l.insights.filter((i) => i.role === "escape").length, l.key).toBeGreaterThanOrEqual(4);
+    }
+  });
+
+  it("has unique insight ids and only points related links at real positions", () => {
+    const ids = LIBRARY.flatMap((l) => l.insights.map((i) => i.id));
+    expect(new Set(ids).size).toBe(ids.length);
+    const keys = new Set(LIBRARY.map((l) => l.key));
+    for (const l of LIBRARY) for (const r of l.related) expect(keys.has(r), `${l.key} -> ${r}`).toBe(true);
   });
 
   it("only lands techniques in known positions", () => {
@@ -25,7 +42,7 @@ describe("addFromLibrary", () => {
   it("creates the position, its destinations and techniques", () => {
     const r = addFromLibrary(empty(), "side-control-top", "B");
     const names = r.plan.positions.map((p) => p.name);
-    expect(names).toEqual(expect.arrayContaining(["Side control (top)", "Mount", "North-south", "Back control", "Knee on belly"]));
+    expect(names).toEqual(expect.arrayContaining(["Side control", "Mount", "North-south", "Knee on belly"]));
     expect(r.addedTechniques).toBe(LIBRARY.find((l) => l.key === "side-control-top")!.techniques.length);
     expect(r.plan.techniques.every((t) => t.priority === "B")).toBe(true);
     expect(r.plan.startPosition).toBe("side-control-top");
@@ -57,5 +74,13 @@ describe("addFromLibrary", () => {
     for (const l of LIBRARY) plan = addFromLibrary(plan, l.key, "A").plan;
     const deadGuards = findGaps(plan).filter((g) => g.kind === "dead-end" && LIBRARY.some((l) => l.key === g.positionId));
     expect(deadGuards).toEqual([]);
+  });
+});
+
+describe("insightTarget", () => {
+  it("maps bottom-of-a-pin positions to that pin's escape side", () => {
+    expect(insightTarget({ id: "side-control-bottom", name: "x", side: "bottom", notes: "" })).toEqual({ key: "side-control-top", role: "escape" });
+    expect(insightTarget({ id: "closed-guard", name: "x", side: "bottom", notes: "" })).toEqual({ key: "closed-guard", role: "control" });
+    expect(insightTarget({ id: "standing", name: "x", side: "neutral", notes: "" })).toBeUndefined();
   });
 });
