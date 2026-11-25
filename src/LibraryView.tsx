@@ -176,7 +176,7 @@ export function Library({
           <input ref={fileInput} type="file" accept="application/json" hidden onChange={importNotes} />
         </div>
         <p className="muted small">
-          Insights tagged with a name come from that practitioner; untagged ones are common coaching. Add your own with a source as you collect them.
+          Control and Escapes hold general coaching. Named practitioners are listed under each position with their own insights. Add an insight with a source and it goes under that person.
         </p>
       </aside>
       <div className="main-pane">
@@ -274,6 +274,8 @@ function PositionPage({
         ))}
       </div>
 
+      <PeopleSection entry={entry} notebook={notebook} setNotebook={setNotebook} only={source} mode={mode} />
+
       {entry.techniques.length > 0 && <Attacks entry={entry} plan={plan} update={update} mode={mode} />}
     </div>
   );
@@ -291,12 +293,13 @@ function RoleColumn({
   role: Role;
   notebook: Notebook;
   setNotebook?: NotebookUpdater;
+  /** Pre-fills the source field when adding (the practitioner filter). */
   source?: string;
   mode: AttireMode;
 }) {
   const [adding, setAdding] = useState(false);
-  const insights = insightsFor(notebook, entry.key, role, mode);
-  const shown = source ? insights.filter((i) => i.source === source) : insights;
+  // Named practitioners are listed separately below the position (PeopleSection).
+  const shown = insightsFor(notebook, entry.key, role, mode).filter((i) => !i.source);
   const byTopic = TOPICS.map((t) => [t, shown.filter((i) => i.topic === t)] as const).filter(([, l]) => l.length);
   const who = role === "control" ? entry.controller : entry.escaper;
 
@@ -309,7 +312,7 @@ function RoleColumn({
         </span>
       </header>
       {byTopic.length === 0 && (
-        <p className="empty small">{source ? `Nothing from ${source} here yet.` : "No insights yet. Add the first one."}</p>
+        <p className="empty small">No general insights yet. Add the first one.</p>
       )}
       {byTopic.map(([topic, list]) => (
         <div key={topic} className="topic">
@@ -607,9 +610,79 @@ export function Insights({
           <RoleColumn key={r} entry={entry} role={r} notebook={notebook} mode={mode} />
         ))}
       </div>
+      <PeopleSection entry={entry} notebook={notebook} mode={mode} />
       <button className="link" onClick={() => openLibrary(entry.key)}>
         Open in library to add insights →
       </button>
     </details>
+  );
+}
+
+/** Each named practitioner, listed under the position with their own control and escape insights. */
+function PeopleSection({
+  entry,
+  notebook,
+  setNotebook,
+  only,
+  mode,
+}: {
+  entry: LibraryPosition;
+  notebook: Notebook;
+  setNotebook?: NotebookUpdater;
+  only?: string;
+  mode: AttireMode;
+}) {
+  const named = [...insightsFor(notebook, entry.key, "control", mode), ...insightsFor(notebook, entry.key, "escape", mode)].filter(
+    (i) => i.source && (!only || i.source === only),
+  );
+  if (!named.length) {
+    return only ? <p className="empty small people-empty">Nothing from {only} on this position yet.</p> : null;
+  }
+  const people = new Map<string, Insight[]>();
+  for (const i of named) people.set(i.source!, [...(people.get(i.source!) ?? []), i]);
+  const ordered = [...people].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+
+  return (
+    <section className="people">
+      <h3>From practitioners</h3>
+      {ordered.map(([name, list]) => (
+        <details key={name} className="person" open={!!only}>
+          <summary>
+            <strong>{name}</strong> <span className="muted small">· {list.length} insight{list.length === 1 ? "" : "s"}</span>
+          </summary>
+          {(["control", "escape"] as Role[]).map((role) => {
+            const mine = list.filter((i) => i.role === role);
+            if (!mine.length) return null;
+            return (
+              <div key={role} className={`person-role person-${role}`}>
+                <h4>
+                  {ROLE_TITLE[role]} <span className="muted">· {role === "control" ? entry.controller : entry.escaper}</span>
+                </h4>
+                <ul>
+                  {mine.map((i) => (
+                    <li key={i.id} className={i.topic === "mistake" ? "insight mistake" : "insight"}>
+                      {mode === "both" && <AttireChip gi={i.gi} />}
+                      {i.text}{" "}
+                      {i.url && (
+                        <a className="source-link" href={i.url} target="_blank" rel="noreferrer noopener">
+                          source
+                        </a>
+                      )}
+                      {i.via && <span className="via"> · {i.via}</span>}
+                      {i.user && <span className="badge mine">yours</span>}
+                      {setNotebook && i.user && (
+                        <button className="x" title="Remove" onClick={() => setNotebook((n) => removeInsight(n, i.id))}>
+                          ✕
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </details>
+      ))}
+    </section>
   );
 }

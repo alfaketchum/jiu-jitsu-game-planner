@@ -165,3 +165,14 @@ textarea { width: 100%; min-height: 64px; resize: vertical; }
 .callout { background: color-mix(in srgb, var(--b) 12%, transparent); border-left: 3px solid var(--b); padding: 6px 10px; border-radius: 6px; font-size: 13px; }
 .source a { color: inherit; }
 .via { font-style: normal; color: var(--muted); font-size: 11px; }
+
+/* Practitioners, listed under the position */
+.people { margin-top: 16px; }
+.people > h3 { font-size: 15px; margin: 0 0 6px; }
+.person { border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; margin-bottom: 6px; }
+.person summary { cursor: pointer; }
+.person-role h4 { font-size: 12px; margin: 10px 0 2px; color: var(--a); }
+.person-escape h4 { color: var(--b); }
+.person-role ul { margin: 0; padding-left: 18px; }
+.source-link { font-size: 12px; }
+.people-empty { margin-top: 14px; }
