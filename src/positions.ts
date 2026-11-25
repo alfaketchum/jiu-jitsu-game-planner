@@ -871,9 +871,9 @@ export const POSITIONS: LibraryPosition[] = [
       "Sitting on their torso with your knees on the mat beside them. Worth 4 points under IBJJF and full of attacks. The risks are the trap-and-roll and the elbow-knee escape.",
     related: ["side-control-top", "north-south", "back"],
     control: [
-      ["key idea", "Stabilize low before you climb high. Low mount to hold, high mount to attack."],
-      ["body position", "Knees tight to their body so they can't fit an elbow into the gap. Grapevine the legs if they bridge a lot."],
-      ["pressure", "Weight on their chest through your hips, not on your knees."],
+      ["key idea", "High and heavy: stay upright, chest up, and sink your weight back onto their hips. Drop low and grapevine only against a big bridge, then get back up once they settle."],
+      ["body position", "Walk your knees high, up by their armpits and inside their elbows, so they can't fit an elbow into the gap."],
+      ["pressure", "Weight goes through your hips into theirs, not onto your knees and not forward onto your chest. Leaning forward is what the kip needs."],
       ["kuzushi", "Ride the bridge, don't fight it. Post your hand wide on the side they bridge toward."],
       ["key idea", "Separate an elbow from their body; that arm is your attack. Climb to S-mount to finish it."],
       ["key idea", "Keep it simple and heavy: Roger Gracie won at the highest level with mount and a cross collar choke, with the armbar ready when they defend the neck.", "Roger Gracie", "gi"],
@@ -881,7 +881,7 @@ export const POSITIONS: LibraryPosition[] = [
     ],
     escapes: [
       ["key idea", "Survival first: elbows tight to your ribs and hands protecting the neck, so you can't be submitted while you work.", "Saulo Ribeiro (Jiu-Jitsu University)"],
-      ["key idea", "Two main escapes: trap and roll when they're high or posting, elbow-knee when they're low and heavy."],
+      ["key idea", "Read their weight: sitting back on your hips, use the knee-elbow; crowding your head and shoulders, kip; high or posting a hand, trap and roll."],
       ["grips", "Trap and roll: trap an arm AND the foot on the same side, then bridge over that shoulder."],
       ["body position", "Elbow-knee: frame on their hip, turn to your side, and slide your elbow to your knee to recover half guard."],
       ["mistake", "Pushing on their chest with straight arms. That's the armbar."],
