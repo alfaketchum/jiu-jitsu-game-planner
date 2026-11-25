@@ -23,6 +23,7 @@ const RYAN = "Gordon Ryan";
 const MIKEY = "Mikey Musumeci";
 const MARCELO = "Marcelo Garcia";
 const LEPRI = "Lucas Lepri";
+const NICKY = "Nicky Ryan";
 
 const BJJMORE = "BJJMore course review";
 const FANATICS_BLOG = "BJJ Fanatics blog breakdown";
@@ -54,6 +55,10 @@ const lepri = {
   course: "https://bjjfanatics.com/products/the-sit-up-guard-by-lucas-lepri",
   review: "https://bjjmore.com/lucas-lepri-sit-up-guard/",
 };
+/** B-Team's "No-Gi Mount Masterclass with Nicky Ryan", linked at the timestamp of each point. */
+const nickyAt = (seconds: number) => `https://www.youtube.com/watch?v=sTn25xj9UGw&t=${seconds}s`;
+const NICKY_VIA = "B-Team video (from a timestamped summary)";
+
 const marcelo = {
   kick: "https://bjjfanatics.com/blogs/news/learn-marcelo-garcia-s-famous-butterfly-kick-sweep",
   ns: "https://bjjfanatics.com/blogs/news/learn-marcelo-garcia-s-famous-north-south-choke",
@@ -229,6 +234,27 @@ const RAW: Record<string, S[]> = {
       text: "Use De La Riva to wrestle up cleanly: turn seated exchanges into quick single-leg stand-ups without telegraphing them." },
     { position: "sit-up-guard", role: "control", topic: "body position", url: lepri.review, via: BJJMORE,
       text: "His seated game runs on precise grips, angles and timing rather than lapel tricks, the same qualities as his passing." },
+  ],
+
+  [NICKY]: [
+    { position: "mount", role: "control", topic: "key idea", url: nickyAt(25), via: NICKY_VIA,
+      text: "Posture and weight distribution are what stop the common escapes. Fix those before thinking about attacks." },
+    { position: "mount", role: "control", topic: "body position", url: nickyAt(86), via: NICKY_VIA,
+      text: "Against the knee-elbow escape, keep their head away from their knees. If an elbow gets inside, crossface to turn their head the other way, and they can't shrimp back to guard." },
+    { position: "mount", role: "control", topic: "pressure", url: nickyAt(176), via: NICKY_VIA,
+      text: "The kip comes when you lean too far forward. Shift your weight back onto their hips, and use a collar tie to anchor your weight and keep their head off the mat: that takes away the power for the lift." },
+    { position: "mount", role: "control", topic: "pressure", url: nickyAt(262), via: NICKY_VIA,
+      text: "Walking up a tight elbow is a three-step cycle: move your head away, extend your arm to lift the elbow, then sink your weight to lock the new position. Repeat until the elbow is above their head." },
+    { position: "mount", role: "control", topic: "key idea", url: nickyAt(451), via: NICKY_VIA,
+      text: "A knee-elbow attempt pulls their own elbow away from their ribs. Use that moment to slide your hand in for a deep underhook." },
+    { position: "mount", role: "control", topic: "body position", url: nickyAt(528), via: NICKY_VIA,
+      text: "For the armbar, slide to S-mount and keep your weight centered. If they lock their hands, stay in S-mount and keep the pressure on before you work on separating the grip." },
+    { position: "mount", role: "control", topic: "grips", url: nickyAt(714), via: NICKY_VIA,
+      text: "Only one elbow isolated? Secure the wrist, slide your knee high into the armpit and posture up. Lift their head strongly before you step over to lock the mounted triangle." },
+    { position: "mount", role: "control", topic: "pressure", url: nickyAt(902), via: NICKY_VIA,
+      text: "Arm triangle: get your shoulder deep under the chin. As you dismount to the side, keep your knee wedged against their hip so they can't turtle or turn away from the pressure." },
+    { position: "mount", role: "control", topic: "key idea", url: nickyAt(1087), via: NICKY_VIA,
+      text: "Expect to chain: switch sides from the S-mount armbar, and go from the arm triangle to the triangle when someone is hard to strangle." },
   ],
 
   [MARCELO]: [

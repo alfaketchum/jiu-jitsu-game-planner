@@ -891,6 +891,8 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Cross collar choke", type: "submission", to: null, trigger: "Deep collar grip and they keep their elbows tight", gi: "gi" },
       { name: "Armbar from S-mount", type: "submission", to: null, trigger: "They push on your chest or hips" },
       { name: "Americana", type: "submission", to: null, trigger: "An arm bends near their head" },
+      { name: "Mounted triangle", type: "submission", to: null, trigger: "One elbow isolated, your knee high in their armpit" },
+      { name: "Arm triangle", type: "submission", to: null, trigger: "Elbow above their shoulder and they stay flat" },
       { name: "Take the back", type: "transition", to: "back", trigger: "They turn to their side to escape" },
     ],
   }),
