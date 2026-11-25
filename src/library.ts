@@ -2,10 +2,15 @@ import type { GamePlan, Position, Priority, Side, Technique } from "./model";
 import { uid } from "./model";
 import type { LibraryPosition, LibraryTechnique, Role } from "./libraryTypes";
 import { POSITIONS } from "./positions";
+import { SOURCED } from "./sourced";
 
 export * from "./libraryTypes";
 
-export const LIBRARY: LibraryPosition[] = POSITIONS;
+/** Built-in positions with the practitioner-sourced insights merged in. */
+export const LIBRARY: LibraryPosition[] = POSITIONS.map((p) => ({
+  ...p,
+  insights: [...p.insights, ...SOURCED.filter((i) => i.position === p.key)],
+}));
 
 /** Positions techniques can land in that don't have a full write-up yet. */
 export const DESTINATIONS: Record<string, { name: string; side: Side }> = {

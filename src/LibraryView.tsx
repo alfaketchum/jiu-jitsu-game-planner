@@ -361,6 +361,7 @@ function InsightItem({ insight, showAttire, onRemove }: { insight: Insight; show
           ) : (
             insight.source
           )}
+          {insight.via && <span className="via"> · via {insight.via}</span>}
         </span>
       )}
       {insight.user && <span className="badge mine">yours</span>}

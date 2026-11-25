@@ -164,3 +164,4 @@ textarea { width: 100%; min-height: 64px; resize: vertical; }
 .aka { margin: 0 0 6px; color: var(--muted); font-size: 13px; font-style: italic; }
 .callout { background: color-mix(in srgb, var(--b) 12%, transparent); border-left: 3px solid var(--b); padding: 6px 10px; border-radius: 6px; font-size: 13px; }
 .source a { color: inherit; }
+.via { font-style: normal; color: var(--muted); font-size: 11px; }

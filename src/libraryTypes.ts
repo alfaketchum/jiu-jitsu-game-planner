@@ -40,6 +40,8 @@ export interface Insight {
   source?: string;
   /** Where the source says it (instructional page, interview, video). */
   url?: string;
+  /** How we know: e.g. "BJJMore review" when it's a write-up of their course rather than their own words. */
+  via?: string;
   gi?: Attire;
   /** Added by the user rather than built in. */
   user?: boolean;
@@ -65,9 +67,12 @@ export type Group =
   | "Leg entanglements"
   | "Pins"
   | "Back"
+  | "Turtle"
+  | "Open guard"
   | "Other";
 
 export const GROUPS: Group[] = [
+  "Open guard",
   "Closed guard",
   "Half guard",
   "Spider & lasso",
@@ -77,6 +82,7 @@ export const GROUPS: Group[] = [
   "Leg entanglements",
   "Pins",
   "Back",
+  "Turtle",
   "Other",
 ];
 

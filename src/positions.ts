@@ -10,6 +10,49 @@ const LEG_LOCK_RULES =
   "IBJJF: heel hooks and knee reaping are allowed only for adult brown and black belts in no-gi. Many submission-only rulesets allow them. Check yours before training this for competition.";
 
 export const POSITIONS: LibraryPosition[] = [
+  // ───────────────────────── OPEN GUARD ─────────────────────────
+  build({
+    key: "open-guard",
+    name: "Open guard (general)",
+    side: "bottom",
+    family: "guard",
+    group: "Open guard",
+    summary:
+      "Any guard where your legs aren't locked around them or trapping a leg: feet and knees on hips, knees, biceps or shoulders. Control here is guard retention; escaping is guard passing. The specific open guards (spider, De La Riva, butterfly, X) each have their own page.",
+    related: ["collar-sleeve", "seated-guard", "de-la-riva", "spider-guard"],
+    control: [
+      ["key idea", "Keep connections between you: feet, knees and hands. Every connection you lose is one less thing they have to beat."],
+      ["body position", "Keep your hips facing them. When they circle, turn back to face them before reaching for grips."],
+      ["distance", "Knees and elbows inside theirs. Frames before grips."],
+      ["mistake", "Reaching for grips while your legs are dead. Legs first, then grips."],
+    ],
+    escapes: [
+      ["key idea", "Get past the legs before you deal with the upper body; then connect chest to chest before they re-guard."],
+      ["distance", "Either stay out of range of their feet or close in all at once. Standing just in front of their feet is where guards work best."],
+      ["mistake", "Passing in a straight line. Change the angle so their legs stop facing you."],
+    ],
+  }),
+  build({
+    key: "collar-sleeve",
+    name: "Collar-sleeve guard",
+    parent: "open-guard",
+    side: "bottom",
+    family: "guard",
+    group: "Open guard",
+    gi: "gi",
+    summary:
+      "Collar grip plus same-side sleeve, with your feet on the hips, biceps or shoulders. The grips pull them in and hold them away at once. A staple of modern gi guard retention.",
+    related: ["open-guard", "spider-guard", "de-la-riva"],
+    control: [
+      ["key idea", "The collar pulls, the sleeve controls their posting arm, the feet manage distance. Lose one and rebuild it before attacking."],
+    ],
+    escapes: [
+      ["grips", "Break the collar grip first; it's what pulls your posture down."],
+      ["body position", "Posture up with elbows tight; don't let your arms get extended away from your body."],
+      ["mistake", "Stepping into range without dealing with their feet."],
+    ],
+  }),
+
   // ───────────────────────── CLOSED GUARD ─────────────────────────
   build({
     key: "closed-guard",
@@ -89,7 +132,6 @@ export const POSITIONS: LibraryPosition[] = [
     side: "bottom",
     family: "guard",
     group: "Half guard",
-    aka: ["Z-guard (high)"],
     summary:
       "Half guard with your top shin across their chest or shoulder, holding them at long distance. Keeps their weight off your chest and sets up upper-body attacks.",
     related: ["low-knee-shield", "half-guard-bottom"],
@@ -110,6 +152,7 @@ export const POSITIONS: LibraryPosition[] = [
   build({
     key: "low-knee-shield",
     name: "Low knee shield",
+    aka: ["Z-guard"],
     parent: "half-guard-bottom",
     side: "bottom",
     family: "guard",
@@ -467,6 +510,28 @@ export const POSITIONS: LibraryPosition[] = [
     ],
   }),
   build({
+    key: "shin-to-shin",
+    name: "Shin-to-shin",
+    parent: "seated-guard",
+    side: "bottom",
+    family: "guard",
+    group: "Seated & butterfly",
+    summary:
+      "Seated, with your shin across the front of their shin and a hand on that leg. Two connections to one leg: an entry to single-leg X, X-guard and wrestling up. The gi version adds a spider foot (spider + shin-to-shin).",
+    related: ["seated-guard", "single-leg-x", "spider-shin-to-shin"],
+    control: [
+      ["key idea", "Your shin and your hand both connect to the same leg, so they can't step that leg away."],
+      ["body position", "Sit up close to the leg, chest up; don't lean back."],
+      ["kuzushi", "Elevate the leg with your shin to take their weight off it, then enter single-leg X or come up on the leg."],
+      ["mistake", "Shin low near their ankle, where you can't lift."],
+    ],
+    escapes: [
+      ["body position", "Step the leg back before they elevate it."],
+      ["pressure", "Pin their shin to the mat with your knee."],
+      ["mistake", "Standing heavy on the connected leg: it's the one they want to lift."],
+    ],
+  }),
+  build({
     key: "sit-up-guard",
     name: "Sit-up guard",
     side: "bottom",
@@ -640,7 +705,7 @@ export const POSITIONS: LibraryPosition[] = [
       ["mistake", "Attacking the heel before the knee line is controlled. They escape the knee and the heel hook disappears."],
     ],
     escapes: [
-      ["key idea", "Hide the heel first: keep it away from their arm and boot the foot."],
+      ["key idea", "Hide the heel first: keep it away from their arm. Point your toes rather than flexing the foot; booting is a straight-ankle-lock defense and exposes the heel here."],
       ["key idea", "Clear the knee line before pulling the foot; pulling the foot first exposes the heel."],
       ["grips", "Push their crossing leg down and off your hip with your hands to make room for the knee."],
       ["mistake", "Spinning out of a tight heel hook. That's how knees get injured. Tap early."],
@@ -666,7 +731,7 @@ export const POSITIONS: LibraryPosition[] = [
       ["mistake", "Triangle locked too low, near the foot. Their knee slides out."],
     ],
     escapes: [
-      ["key idea", "Protect the heel with your hands and boot the foot before anything else."],
+      ["key idea", "Protect the heel with your hands before anything else."],
       ["key idea", "Then clear the knee line: get your knee out past their hips."],
       ["body position", "Use your free leg to push their top leg and break the triangle."],
       ["mistake", "Rolling under heel hook pressure. Tap early; the knee goes before you feel pain."],
@@ -831,6 +896,54 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Rear naked choke", type: "submission", to: null, trigger: "Hand fight won, choking arm under the chin" },
       { name: "Bow and arrow choke", type: "submission", to: null, trigger: "They defend the RNC with both hands", gi: "gi" },
       { name: "Take mount", type: "transition", to: "mount", trigger: "They escape to their back on the wrong side" },
+    ],
+  }),
+  // ───────────────────────── TURTLE ─────────────────────────
+  build({
+    key: "turtle",
+    name: "Turtle",
+    side: "top",
+    family: "pin",
+    group: "Turtle",
+    controller: "Top player",
+    escaper: "Turtled player",
+    summary:
+      "They're on knees and elbows, you're on top. A transition position: the top player wants the back, a front headlock or to break them flat; the bottom player wants to re-guard or wrestle up.",
+    related: ["back", "front-headlock", "side-control-top"],
+    control: [
+      ["key idea", "Weight on their back and shoulders so they can't build height."],
+      ["grips", "Seatbelt or a grip on the far side before going for hooks."],
+      ["kuzushi", "Take away a post (an arm or a foot) and they fall flat or open the back."],
+      ["mistake", "Diving for hooks and falling off the top."],
+    ],
+    escapes: [
+      ["body position", "Elbows to knees, no gaps for hooks or arms."],
+      ["key idea", "Don't stay there: roll back to guard, sit out, or come up to wrestle."],
+      ["mistake", "Reaching out with an arm. It gets caught or opens the back."],
+    ],
+  }),
+  build({
+    key: "front-headlock",
+    name: "Front headlock",
+    parent: "turtle",
+    side: "top",
+    family: "pin",
+    group: "Turtle",
+    controller: "Top player",
+    escaper: "Player with head trapped",
+    summary:
+      "You control their head (and usually an arm) from in front while they're on their knees or coming up. Home of the guillotine, darce and anaconda, and a route to the back.",
+    related: ["turtle", "back"],
+    control: [
+      ["grips", "Chin strap: forearm under the chin, the other hand controlling the arm."],
+      ["pressure", "Weight on their head so they can't posture up."],
+      ["key idea", "Snap down and spin behind to the back, or attack the neck; don't sit still in front."],
+      ["mistake", "Head level with theirs. They come up and drive into you."],
+    ],
+    escapes: [
+      ["key idea", "Posture comes first: get your head up and back."],
+      ["grips", "Clear the chin-strap hand from under your chin."],
+      ["mistake", "Reaching for their legs with your head trapped."],
     ],
   }),
 ];
