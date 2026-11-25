@@ -28,6 +28,11 @@ Map your jiu jitsu game as a graph of **positions** and the **techniques** that 
 
 A sample closed-guard game loads on first open.
 
+## Use it online
+
+Deployed to GitHub Pages on every push to `main`: https://alfaketchum.github.io/jiu-jitsu-game-planner/
+(One-time setup: repo **Settings → Pages → Source: GitHub Actions**.)
+
 ## Run it
 
 ```bash
