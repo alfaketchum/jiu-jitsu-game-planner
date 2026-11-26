@@ -853,6 +853,7 @@ export const POSITIONS: LibraryPosition[] = [
     ],
     techniques: [
       { name: "Slide to mount", type: "transition", to: "mount", trigger: "Their near arm is pinned or their knees face away" },
+      { name: "Leg ride", type: "transition", to: "mount", trigger: "You can't isolate their near arm or switch to a headlock crossface" },
       { name: "Kimura from side control", type: "submission", to: null, trigger: "They push your hip with the far arm" },
       { name: "Americana", type: "submission", to: null, trigger: "Far arm bent near their head" },
       { name: "Arm triangle", type: "submission", to: null, trigger: "Their near arm pushes across your face" },

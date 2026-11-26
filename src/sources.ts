@@ -703,6 +703,17 @@ export const SOURCES: Source[] = [
     status: "verified",
   },
   {
+    id: "gordon-ryan:full-kingsway-class",
+    practitioner: "Gordon Ryan",
+    title: "Gordon Ryan Full Kingsway Class",
+    publisher: "YouTube (Gordon Ryan)",
+    url: "https://www.youtube.com/watch?v=1Xo8XgxW7Z0",
+    kind: "video",
+    via: "Gordon Ryan's YouTube channel (checked against the video's captions)",
+    accessed: "2026-11-26",
+    status: "verified",
+  },
+  {
     id: "gordon-ryan:top-pins-side-control-review",
     practitioner: "Gordon Ryan",
     title: "Systematically Attacking From Top Pins: Side Control & North South \u2013 In-Depth Review",

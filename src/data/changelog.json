@@ -566,6 +566,15 @@
         "nicky-ryan:recipe-defeat-gordon"
       ],
       "hash": "348dad79"
+    },
+    {
+      "version": 6,
+      "date": "2026-11-26",
+      "summary": "Added Gordon Ryan's Kingsway class: inside position, isolating both arms, moving to mount, and the leg ride (new technique)",
+      "sources": [
+        "gordon-ryan:full-kingsway-class"
+      ],
+      "hash": "84c7a079"
     }
   ],
   "mount": [
