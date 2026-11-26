@@ -353,8 +353,8 @@ export const SOURCES: Source[] = [
     publisher: "YouTube (B-Team)",
     url: "https://www.youtube.com/watch?v=sTn25xj9UGw",
     kind: "video",
-    via: "B-Team video (from a timestamped summary)",
-    accessed: "2026-11-25",
+    via: "B-Team video (checked against the video's captions)",
+    accessed: "2026-11-26",
     status: "verified",
   },
   {
