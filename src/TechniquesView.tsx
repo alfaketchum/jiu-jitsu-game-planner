@@ -109,7 +109,7 @@ function FamilyPage({ family, mode, openPosition }: { family: TechniqueFamily; m
                 {position.name}
               </button>
               <AttireChip gi={technique.gi ?? position.gi} />
-              {technique.from === "bottom" && <span className="badge from-bottom">from bottom</span>}
+              {technique.from && <span className={`badge from-${technique.from}`}>from {technique.from}</span>}
             </header>
             <div className="small muted">{technique.name}</div>
             <div className="variant-when">

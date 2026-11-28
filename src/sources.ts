@@ -834,6 +834,17 @@ export const SOURCES: Source[] = [
     accessed: "2026-11-25",
     status: "verified",
   },
+  {
+    id: "rob-houghton:world-class-guard-passing",
+    practitioner: "Rob Houghton",
+    title: "The Secret to World Class Guard Passing",
+    publisher: "YouTube (Rob Houghton BJJ)",
+    url: "https://www.youtube.com/watch?v=QdsUyO36Kag",
+    kind: "video",
+    via: "Rob Houghton's knee cut study on YouTube (checked against the video's captions)",
+    accessed: "2026-11-28",
+    status: "verified",
+  },
 ];
 
 const BY_ID = new Map(SOURCES.map((s) => [s.id, s]));

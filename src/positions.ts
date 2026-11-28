@@ -35,6 +35,7 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Tripod sweep", type: "sweep", to: "top-guard", trigger: "Foot on their hip, ankle grip, their weight on the far leg" },
       { name: "Sickle sweep", type: "sweep", to: "top-guard", trigger: "They resist the tripod sweep by leaning forward" },
       { name: "Collar drag to back", type: "transition", to: "back", trigger: "They lean in or post a hand", gi: "gi" },
+      { name: "Knee cut", type: "pass", to: "side-control-top", trigger: "Passer: they sit at 45°, halfway between up and flat, with space between their legs", from: "top" },
     ],
   }),
   build({
@@ -190,6 +191,7 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Underhook sweep", type: "sweep", to: "top-half", trigger: "Underhook won and they lean into the shield" },
       { name: "Choi bar", type: "submission", to: null, trigger: "They drive in to smash the shield" },
       { name: "Enter ashi garami", type: "transition", to: "ashi-garami", trigger: "They back away from the shield" },
+      { name: "Knee cut", type: "pass", to: "side-control-top", trigger: "Passer: the shield opens, or you clear their cross-shoulder frame for the underhook", from: "top" },
     ],
   }),
   build({
@@ -459,6 +461,7 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Berimbolo / back take", type: "transition", to: "back", trigger: "They sit back or widen their base against the sweep" },
       { name: "Enter X-guard", type: "transition", to: "x-guard", trigger: "They step the free leg forward and stand tall" },
       { name: "Enter single-leg X", type: "transition", to: "single-leg-x", trigger: "They back away from the hook" },
+      { name: "Knee cut", type: "pass", to: "side-control-top", trigger: "Passer: their ankle grip opens a gap between elbow and ribs", from: "top" },
     ],
   }),
   build({
@@ -549,6 +552,7 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Wrestle up on a leg", type: "takedown", to: "top-guard", trigger: "They sit back or stand tall" },
       { name: "Insert butterfly hooks", type: "transition", to: "butterfly-guard", trigger: "They kneel or come in close" },
       { name: "Enter single-leg X", type: "transition", to: "single-leg-x", trigger: "They stand and step a leg in" },
+      { name: "Knee cut", type: "pass", to: "side-control-top", trigger: "Passer: they grab your knee, or open their elbows to keep balance when you snap the head down", from: "top" },
     ],
   }),
   build({

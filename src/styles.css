@@ -217,6 +217,7 @@ button.danger.armed { background: var(--danger); color: var(--panel); border-col
 
 /* Technique insights */
 .badge.from-bottom { margin-left: 6px; background: color-mix(in srgb, var(--b) 18%, transparent); }
+.badge.from-top { margin-left: 6px; background: color-mix(in srgb, var(--a) 18%, transparent); }
 .tech-insights { margin-top: 4px; font-size: 13px; }
 .tech-insights summary { cursor: pointer; color: var(--accent); }
 .tech-insight-group h5 { margin: 6px 0 2px; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--a); }

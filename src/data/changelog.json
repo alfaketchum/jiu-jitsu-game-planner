@@ -20,6 +20,15 @@
       ],
       "backfilled": true,
       "hash": "462ef534"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-28",
+      "summary": "Added Knee cut pass with Rob Houghton's knee cut study",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "1b7bd305"
     }
   ],
   "collar-sleeve": [
@@ -121,6 +130,15 @@
         "craig-jones:embrace-smash-z-guard"
       ],
       "hash": "27d90e1e"
+    },
+    {
+      "version": 4,
+      "date": "2026-11-28",
+      "summary": "Added Knee cut pass with Rob Houghton's knee cut study",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "81168cf7"
     }
   ],
   "deep-half": [
@@ -235,6 +253,15 @@
       "sources": [],
       "backfilled": true,
       "hash": "26cc09d4"
+    },
+    {
+      "version": 2,
+      "date": "2026-11-28",
+      "summary": "Added Knee cut pass with Rob Houghton's knee cut study",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "ef9f4565"
     }
   ],
   "spider-dlr": [
@@ -277,6 +304,15 @@
       ],
       "backfilled": true,
       "hash": "fea4d48a"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-28",
+      "summary": "Added Knee cut pass with Rob Houghton's knee cut study",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "0d361134"
     }
   ],
   "shin-to-shin": [

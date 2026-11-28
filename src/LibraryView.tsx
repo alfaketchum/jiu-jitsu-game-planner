@@ -630,7 +630,7 @@ function TechniqueSection({ entry, mode, onSelect }: { entry: LibraryPosition; m
                       <div className="tech-line">
                         <strong>{t.name}</strong>
                         {mode === "both" && <AttireChip gi={t.gi} />}
-                        {t.from === "bottom" && <span className="badge from-bottom">from bottom</span>}
+                        {t.from && <span className={`badge from-${t.from}`}>from {t.from}</span>}
                         {t.to && <span className="muted"> → {destination(t.to)}</span>}
                       </div>
                       <div className="muted small">When: {t.trigger}</div>
