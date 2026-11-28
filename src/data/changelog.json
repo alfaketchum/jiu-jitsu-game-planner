@@ -647,6 +647,15 @@
         "gordon-ryan:full-kingsway-class"
       ],
       "hash": "84c7a079"
+    },
+    {
+      "version": 7,
+      "date": "2026-11-28",
+      "summary": "Added Josh Saunders' side control attack system: kimura, tarikoplata, heel hook",
+      "sources": [
+        "josh-saunders:side-control-attack-system"
+      ],
+      "hash": "a48ce592"
     }
   ],
   "mount": [

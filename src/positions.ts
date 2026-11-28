@@ -911,6 +911,8 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Leg ride", type: "transition", to: "mount", trigger: "You can't isolate their near arm or switch to a headlock crossface" },
       { name: "Kimura from side control", type: "submission", to: null, trigger: "They push your hip with the far arm" },
       { name: "Americana", type: "submission", to: null, trigger: "Far arm bent near their head" },
+      { name: "Tarikoplata from side control", type: "submission", to: null, trigger: "Kimura grip in, but they lock their hands and their legs are together" },
+      { name: "Inside heel hook from side control", type: "submission", to: null, trigger: "Kimura grip in, they lock their hands and connect knee to elbow, legs open", gi: "no-gi" },
       { name: "Arm triangle", type: "submission", to: null, trigger: "Their near arm pushes across your face" },
       { name: "Step to knee on belly", type: "transition", to: "knee-on-belly", trigger: "They frame and make space at the hip" },
       { name: "Walk to north-south", type: "transition", to: "north-south", trigger: "They frame your head and hips" },

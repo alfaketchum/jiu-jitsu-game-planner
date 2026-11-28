@@ -856,6 +856,17 @@ export const SOURCES: Source[] = [
     accessed: "2026-11-28",
     status: "verified",
   },
+  {
+    id: "josh-saunders:side-control-attack-system",
+    practitioner: "Josh Saunders",
+    title: "The Only Side Control Attack System You Need",
+    publisher: "YouTube (Josh Saunders)",
+    url: "https://www.youtube.com/watch?v=jxcJMSNC1j4",
+    kind: "video",
+    via: "Josh Saunders' YouTube channel, no-gi (checked against the video's captions)",
+    accessed: "2026-11-28",
+    status: "verified",
+  },
 ];
 
 const BY_ID = new Map(SOURCES.map((s) => [s.id, s]));
