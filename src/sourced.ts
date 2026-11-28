@@ -568,4 +568,17 @@ export const SOURCED: SourcedInsight[] = [
     text: "Take a two-on-one on the same side as their back leg: cross grip on the wrist, other hand at the elbow. Lean back with a strong pull to draw that back leg up into a square stance." },
   { position: "butterfly-guard", technique: "Double-leg wrestle up", role: "control", topic: "body position", source: "nicky-ryan:intro-butterfly-guard", at: 382,
     text: "Scoot in, clip behind both ankles and switch to pushing on their knees. Beginners sit down; better opponents step a leg back. Then grab behind that knee, fold your leg in, build up to your knee and drive a double leg (one arm elbow-deep, the other round the hip), knee to the mat, outside hook, and drive them down." },
+  // Less Impressed More Involved BJJ
+  { position: "butterfly-guard", technique: "Butterfly (hook) sweep", role: "control", topic: "grips", source: "less-impressed-more-involved:butterfly-sweep-failing", at: 0,
+    text: "The classic version: underhook on one side, grab their other elbow and clamp the wrist under your own elbow, then move your hook from inside their knee across. Drive your ear to the mat and take them with you; as your ear touches, kick up the other foot and turn your hips through to come up on top." },
+  { position: "butterfly-guard", technique: "Butterfly (hook) sweep", role: "control", topic: "mistake", source: "less-impressed-more-involved:butterfly-sweep-failing", at: 276,
+    text: "Head on the opposite side to your underhook. That leaves them free to drop their weight on the underhook, smash it to the mat and start a body lock pass. It's why the classic version works on a partner who isn't resisting and fails against one who is." },
+  { position: "butterfly-guard", technique: "Butterfly (hook) sweep", role: "control", topic: "body position", source: "less-impressed-more-involved:butterfly-sweep-failing", at: 312,
+    text: "Put your head on the same side as your underhook. It protects the underhook and shuts down the body lock entry. Even when no sweep comes, being stuck in a stalemate beats being smashed and passed." },
+  { position: "butterfly-guard", technique: "Butterfly (hook) sweep", role: "control", topic: "key idea", source: "less-impressed-more-involved:butterfly-sweep-failing", at: 347,
+    text: "If you can't bring your head to the underhook side, bring the underhook to your head's side: put their hand on the mat and switch. Head and underhook on the same side lead to the shoulder crunch and pinch headlock versions of the sweep, which work better from a static butterfly guard." },
+  { position: "butterfly-guard", technique: "Butterfly (hook) sweep", role: "control", topic: "key idea", source: "less-impressed-more-involved:butterfly-sweep-failing", at: 237,
+    text: "Save the classic version for transitions, when they're already stretched out, such as reaching over you as you turtle." },
+  { position: "butterfly-guard", technique: "Butterfly (hook) sweep", role: "escape", topic: "pressure", source: "less-impressed-more-involved:butterfly-sweep-failing", at: 166,
+    text: "When they take an underhook for the sweep, pass toward that side and smash the underhook to the mat; that's the body lock pass. The breakdown shows Andrew Wiltse and Lovato Jr. using it." },
 ];

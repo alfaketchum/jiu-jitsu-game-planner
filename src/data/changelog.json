@@ -428,11 +428,12 @@
     {
       "version": 4,
       "date": "2026-11-28",
-      "summary": "Added Nicky Ryan's butterfly guard intro: posture, push-pull, three sweeps",
+      "summary": "Added Nicky Ryan's butterfly guard intro and a breakdown of why the classic butterfly sweep fails",
       "sources": [
-        "nicky-ryan:intro-butterfly-guard"
+        "nicky-ryan:intro-butterfly-guard",
+        "less-impressed-more-involved:butterfly-sweep-failing"
       ],
-      "hash": "aea645ba"
+      "hash": "38f3c60e"
     }
   ],
   "x-guard": [

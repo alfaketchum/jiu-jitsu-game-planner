@@ -878,6 +878,17 @@ export const SOURCES: Source[] = [
     accessed: "2026-11-28",
     status: "verified",
   },
+  {
+    id: "less-impressed-more-involved:butterfly-sweep-failing",
+    practitioner: "Less Impressed More Involved BJJ",
+    title: "The Reason Your Butterfly Sweep is FAILING",
+    publisher: "YouTube (Less Impressed More Involved BJJ)",
+    url: "https://www.youtube.com/watch?v=hrbuYWzRjn0",
+    kind: "video",
+    via: "YouTube match breakdown (checked against the video's captions)",
+    accessed: "2026-11-28",
+    status: "verified",
+  },
 ];
 
 const BY_ID = new Map(SOURCES.map((s) => [s.id, s]));
