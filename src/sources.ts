@@ -841,7 +841,7 @@ export const SOURCES: Source[] = [
     publisher: "YouTube (Rob Houghton BJJ)",
     url: "https://www.youtube.com/watch?v=QdsUyO36Kag",
     kind: "video",
-    via: "Rob Houghton's knee cut study on YouTube (checked against the video's captions)",
+    via: "Rob Houghton's knee cut study on YouTube, mainly no-gi (checked against the video's captions)",
     accessed: "2026-11-28",
     status: "verified",
   },
