@@ -434,6 +434,15 @@
         "less-impressed-more-involved:butterfly-sweep-failing"
       ],
       "hash": "38f3c60e"
+    },
+    {
+      "version": 5,
+      "date": "2026-11-28",
+      "summary": "Added John Danaher's shoulder crunch sumi gaeshi details",
+      "sources": [
+        "john-danaher:shoulder-crunch-sumi-gaeshi"
+      ],
+      "hash": "90a6e176"
     }
   ],
   "x-guard": [

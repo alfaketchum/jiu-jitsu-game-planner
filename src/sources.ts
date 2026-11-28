@@ -889,6 +889,17 @@ export const SOURCES: Source[] = [
     accessed: "2026-11-28",
     status: "verified",
   },
+  {
+    id: "john-danaher:shoulder-crunch-sumi-gaeshi",
+    practitioner: "John Danaher",
+    title: "This is Why Danaher's Students Control EVERYONE in No-Gi",
+    publisher: "YouTube (Bernardo Faria BJJ Fanatics)",
+    url: "https://www.youtube.com/watch?v=2ITHQ2tOULQ",
+    kind: "video",
+    via: "Bernardo Faria's YouTube channel, no-gi (checked against the video's captions)",
+    accessed: "2026-11-28",
+    status: "verified",
+  },
 ];
 
 const BY_ID = new Map(SOURCES.map((s) => [s.id, s]));
