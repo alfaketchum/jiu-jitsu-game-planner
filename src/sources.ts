@@ -867,6 +867,17 @@ export const SOURCES: Source[] = [
     accessed: "2026-11-28",
     status: "verified",
   },
+  {
+    id: "nicky-ryan:intro-butterfly-guard",
+    practitioner: "Nicky Ryan",
+    title: "An Introduction to Butterfly Guard with Nicky Ryan | B-Team Technique",
+    publisher: "YouTube (The B-Team)",
+    url: "https://www.youtube.com/watch?v=9M0XeJN9dX4",
+    kind: "video",
+    via: "B-Team YouTube channel, no-gi (checked against the video's captions)",
+    accessed: "2026-11-28",
+    status: "verified",
+  },
 ];
 
 const BY_ID = new Map(SOURCES.map((s) => [s.id, s]));

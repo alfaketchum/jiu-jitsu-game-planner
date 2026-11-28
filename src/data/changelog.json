@@ -424,6 +424,15 @@
         "marcelo-garcia:learn-s-famous-butterfly-kick-sweep"
       ],
       "hash": "fa1dc840"
+    },
+    {
+      "version": 4,
+      "date": "2026-11-28",
+      "summary": "Added Nicky Ryan's butterfly guard intro: posture, push-pull, three sweeps",
+      "sources": [
+        "nicky-ryan:intro-butterfly-guard"
+      ],
+      "hash": "aea645ba"
     }
   ],
   "x-guard": [

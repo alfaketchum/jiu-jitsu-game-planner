@@ -644,6 +644,9 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Butterfly (hook) sweep", type: "sweep", to: "top-guard", trigger: "Over-under, their arm trapped, weight on you" },
       { name: "Arm drag to back", type: "transition", to: "back", trigger: "They reach or push your chest with one arm" },
       { name: "Enter X-guard", type: "transition", to: "x-guard", trigger: "They stand up to escape the hooks" },
+      { name: "Shoulder crunch sumi", type: "sweep", to: "top-guard", trigger: "Two-on-one on an arm, and you can get under it as you elevate them" },
+      { name: "Body lock bait sweep", type: "sweep", to: "top-half", trigger: "They stall at a distance; open your elbows and let them shoot a body lock" },
+      { name: "Double-leg wrestle up", type: "takedown", to: "top-guard", trigger: "They stand bent over in a staggered stance" },
     ],
   }),
 
