@@ -106,6 +106,7 @@ export type Group =
   | "Pins"
   | "Back"
   | "Turtle"
+  | "Passing"
   | "Open guard"
   | "Other";
 
@@ -121,10 +122,11 @@ export const GROUPS: Group[] = [
   "Pins",
   "Back",
   "Turtle",
+  "Passing",
   "Other",
 ];
 
-export type Family = "guard" | "pin" | "back" | "legs";
+export type Family = "guard" | "pin" | "back" | "legs" | "passing";
 
 export interface LibraryPosition {
   key: string;
@@ -155,6 +157,7 @@ export const ROLES_BY_FAMILY: Record<Family, { controller: string; escaper: stri
   pin: { controller: "Top player", escaper: "Bottom player" },
   back: { controller: "Player on the back", escaper: "Player defending" },
   legs: { controller: "Attacker", escaper: "Person whose leg is trapped" },
+  passing: { controller: "Passer (top)", escaper: "Guard player (bottom)" },
 };
 
 type Line = [Topic, string, string?, Attire?];

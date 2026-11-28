@@ -36,7 +36,7 @@ type NotebookUpdater = (fn: (n: Notebook) => Notebook) => void;
 
 const ROLE_TITLE: Record<Role, string> = { control: "Control", escape: "Escapes" };
 const ROLE_HINT: Record<Role, string> = { control: "attacking side", escape: "defending side" };
-const FAMILY_LABEL: Record<Family, string> = { guard: "guard", pin: "pin", back: "back", legs: "leg entanglement" };
+const FAMILY_LABEL: Record<Family, string> = { guard: "guard", pin: "pin", back: "back", legs: "leg entanglement", passing: "passing position" };
 
 export function AttireChip({ gi }: { gi?: Attire }) {
   if (!gi) return null;
@@ -470,7 +470,7 @@ function NewPositionForm({
             name,
             group,
             family,
-            side: family === "pin" || family === "back" ? "top" : "bottom",
+            side: family === "pin" || family === "back" || family === "passing" ? "top" : "bottom",
             gi: gi || undefined,
             parent: parent || undefined,
             summary,
@@ -491,6 +491,7 @@ function NewPositionForm({
         <option value="pin">Pin (controlled from top)</option>
         <option value="back">Back</option>
         <option value="legs">Leg entanglement</option>
+        <option value="passing">Passing position (controlled from top)</option>
       </select>
       <select value={group} onChange={(e) => setGroup(e.target.value as Group)}>
         {GROUPS.map((g) => (

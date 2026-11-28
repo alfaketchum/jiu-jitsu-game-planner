@@ -191,7 +191,7 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Underhook sweep", type: "sweep", to: "top-half", trigger: "Underhook won and they lean into the shield" },
       { name: "Choi bar", type: "submission", to: null, trigger: "They drive in to smash the shield" },
       { name: "Enter ashi garami", type: "transition", to: "ashi-garami", trigger: "They back away from the shield" },
-      { name: "Knee cut", type: "pass", to: "side-control-top", trigger: "Passer: the shield opens, or you clear their cross-shoulder frame for the underhook", from: "top" },
+      { name: "Knee cut", type: "pass", to: "north-south", trigger: "Passer: the low shield blocks the middle, so you cut around it to north-south", from: "top" },
     ],
   }),
   build({
@@ -824,6 +824,56 @@ export const POSITIONS: LibraryPosition[] = [
       { name: "Heel hook from 50/50", type: "submission", to: null, trigger: "Their heel is exposed before yours", gi: "no-gi" },
       { name: "Toe hold from 50/50", type: "submission", to: null, trigger: "They hide the heel by turning the foot" },
       { name: "50/50 sweep to top", type: "sweep", to: "top-guard", trigger: "Pants or belt grip and they sit back", gi: "gi" },
+    ],
+  }),
+
+  // ───────────────────────── PASSING ─────────────────────────
+  build({
+    key: "headquarters",
+    name: "Headquarters",
+    aka: ["HQ"],
+    side: "top",
+    family: "passing",
+    group: "Passing",
+    summary:
+      "A passing position: one of their legs between yours, one outside. Their bottom hip is pinned with your knee and you sit on their bottom foot, their top knee centred on your sternum. Their attacks and defences here are few and well known, so you can predict them and pass off their reactions. The knee cut is the main attack.",
+    related: ["split-squat", "de-la-riva", "open-guard", "side-control-top"],
+    control: [
+      ["key idea", "Settle and control first, then attack. Rushing the pass before you have grips gives them time to rebuild."],
+    ],
+    escapes: [
+      ["key idea", "Don't let them settle. Off-balance them or change hips before their grips are in."],
+    ],
+    techniques: [
+      { name: "Knee cut", type: "pass", to: "side-control-top", trigger: "Their top knee opens" },
+      { name: "Smash pass", type: "pass", to: "mount", trigger: "Their top knee closes and your chest gets outside it" },
+      { name: "Knee hike", type: "pass", to: "mount", trigger: "They push their top knee into you" },
+      { name: "Skip step", type: "pass", to: "side-control-top", trigger: "Their top knee won't move" },
+      { name: "Switch to split squat", type: "transition", to: "split-squat", trigger: "They switch hips to reverse De La Riva" },
+    ],
+  }),
+  build({
+    key: "split-squat",
+    name: "Split squat",
+    side: "top",
+    family: "passing",
+    group: "Passing",
+    summary:
+      "A passing position with one knee forward against their reverse De La Riva hook, knee shield and cross-shoulder frame. Often where headquarters ends up when they switch hips. You have to clear all three to knee cut.",
+    related: ["headquarters", "low-knee-shield", "side-control-top"],
+    control: [
+      ["key idea", "Win the underhook before you cut. Cutting without it lets them turn in and re-guard."],
+      ["body position", "Stay low on your front knee so the reverse De La Riva hook can't lift you."],
+      ["mistake", "Trying to cut while the cross-shoulder frame is still in. It keeps you off their chest the whole way."],
+    ],
+    escapes: [
+      ["grips", "Cross-shoulder frame: one forearm across both shoulders blocks their underhook and chest-to-chest."],
+      ["key idea", "The hook, the shield and the frame cover each other. Lose one and fix it before they clear the next."],
+      ["mistake", "Letting them pull your head in. Keep it turned away so there's space to re-guard."],
+    ],
+    techniques: [
+      { name: "Knee cut", type: "pass", to: "side-control-top", trigger: "Underhook won after clearing the cross-shoulder frame" },
+      { name: "Rau drag", type: "pass", to: "side-control-top", trigger: "Cross-shoulder frame with tension in their arm" },
     ],
   }),
 

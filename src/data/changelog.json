@@ -139,6 +139,15 @@
         "rob-houghton:world-class-guard-passing"
       ],
       "hash": "81168cf7"
+    },
+    {
+      "version": 5,
+      "date": "2026-11-28",
+      "summary": "Knee cut now goes around the shield to north-south; Rau drag moved to split squat",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "966274a0"
     }
   ],
   "deep-half": [
@@ -262,6 +271,15 @@
         "rob-houghton:world-class-guard-passing"
       ],
       "hash": "ef9f4565"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-28",
+      "summary": "Knee cut: headquarters entry moved to the headquarters page",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "ed5fc00b"
     }
   ],
   "spider-dlr": [
@@ -313,6 +331,15 @@
         "rob-houghton:world-class-guard-passing"
       ],
       "hash": "0d361134"
+    },
+    {
+      "version": 4,
+      "date": "2026-11-28",
+      "summary": "Knee cut: front headlock when they won't budge",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "9edb27d1"
     }
   ],
   "shin-to-shin": [
@@ -786,6 +813,28 @@
         "marcelo-garcia:this-guillotine-set-up-is-money"
       ],
       "hash": "8f873d63"
+    }
+  ],
+  "headquarters": [
+    {
+      "version": 1,
+      "date": "2026-11-28",
+      "summary": "New passing position with Rob Houghton's headquarters system",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "1016f199"
+    }
+  ],
+  "split-squat": [
+    {
+      "version": 1,
+      "date": "2026-11-28",
+      "summary": "New passing position with Rob Houghton's Rau drag and knee cut",
+      "sources": [
+        "rob-houghton:world-class-guard-passing"
+      ],
+      "hash": "3f1ea1f9"
     }
   ]
 }
