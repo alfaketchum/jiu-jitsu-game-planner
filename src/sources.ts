@@ -845,6 +845,17 @@ export const SOURCES: Source[] = [
     accessed: "2026-11-28",
     status: "verified",
   },
+  {
+    id: "andrew-wiltse:smash-lasso-guard",
+    practitioner: "Andrew Wiltse",
+    title: "How To Smash The Lasso Guard by Andrew Wiltse",
+    publisher: "YouTube (Bernardo Faria BJJ Fanatics)",
+    url: "https://www.youtube.com/watch?v=_PFs6v7TJiw",
+    kind: "video",
+    via: "Bernardo Faria's YouTube channel (checked against the video's captions)",
+    accessed: "2026-11-28",
+    status: "verified",
+  },
 ];
 
 const BY_ID = new Map(SOURCES.map((s) => [s.id, s]));

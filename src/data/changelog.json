@@ -242,6 +242,15 @@
       ],
       "backfilled": true,
       "hash": "d9d6bb2b"
+    },
+    {
+      "version": 3,
+      "date": "2026-11-28",
+      "summary": "Added Andrew Wiltse's lasso passing: deep to shallow, grip order, sleeve-grip pass",
+      "sources": [
+        "andrew-wiltse:smash-lasso-guard"
+      ],
+      "hash": "1cd30641"
     }
   ],
   "spider-shin-to-shin": [

@@ -396,6 +396,7 @@ export const POSITIONS: LibraryPosition[] = [
     techniques: [
       { name: "Lasso sweep", type: "sweep", to: "top-guard", trigger: "They lean their weight onto the lasso side" },
       { name: "Omoplata from lasso", type: "submission", to: null, trigger: "They posture away or step to the lasso side" },
+      { name: "Sleeve-grip lasso pass", type: "pass", to: "side-control-top", trigger: "Passer: you get their free sleeve", from: "top" },
     ],
   }),
   build({
